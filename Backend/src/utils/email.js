@@ -11,13 +11,13 @@ const port = process.env.EMAIL_PORT
   ? Number(process.env.EMAIL_PORT)
   : process.env.SMTP_PORT
     ? Number(process.env.SMTP_PORT)
-    : 587;
+    : 465;
 const secure =
   typeof process.env.EMAIL_SECURE !== "undefined"
     ? process.env.EMAIL_SECURE.toLowerCase() === "true"
     : typeof process.env.SMTP_SECURE !== "undefined"
-      ? process.env.SMTP_SECURE.toString().toLowerCase() === "false"
-      : port === 587;
+      ? process.env.SMTP_SECURE.toString().toLowerCase() === "true"
+      : port === 465;
 
 const user = process.env.EMAIL_USER || process.env.SMTP_USER;
 const rawPass = process.env.EMAIL_PASS || process.env.SMTP_PASS || "";
