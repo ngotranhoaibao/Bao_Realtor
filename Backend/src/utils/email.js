@@ -3,15 +3,17 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-// Allow either EMAIL_* or SMTP_* env vars. Trim any whitespace in password (app
-// passwords are sometimes shown with spaces).
-const host =
-  process.env.EMAIL_HOST || process.env.SMTP_HOST || "smtp.gmail.com";
+// Cấu hình Host
+const host = process.env.EMAIL_HOST || process.env.SMTP_HOST || "smtp.gmail.com";
+
+// Cấu hình Port
 const port = process.env.EMAIL_PORT
   ? Number(process.env.EMAIL_PORT)
   : process.env.SMTP_PORT
     ? Number(process.env.SMTP_PORT)
     : 465;
+
+// Cấu hình Secure (true cho 465, false cho 587)
 const secure =
   typeof process.env.EMAIL_SECURE !== "undefined"
     ? process.env.EMAIL_SECURE.toLowerCase() === "true"
@@ -23,6 +25,7 @@ const user = process.env.EMAIL_USER || process.env.SMTP_USER;
 const rawPass = process.env.EMAIL_PASS || process.env.SMTP_PASS || "";
 const pass = rawPass.replace(/\s+/g, "");
 
+// Khởi tạo Transporter với cấu hình chống chặn trên Cloud
 const transporter = nodemailer.createTransport({
   host,
   port,
@@ -30,6 +33,10 @@ const transporter = nodemailer.createTransport({
   auth: {
     user,
     pass,
+  },
+  // Bổ sung cấu hình bypass TLS giúp chạy mượt mà trên server Render
+  tls: {
+    rejectUnauthorized: false,
   },
 });
 

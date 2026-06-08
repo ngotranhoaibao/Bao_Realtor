@@ -14,6 +14,7 @@ export const submitContactController = async (req, res) => {
     const trimmedPhone = phone.trim();
     const trimmedMessage = message ? message.trim() : "(no message)";
 
+    // 1. Lưu thông tin khách hàng vào MongoDB trước
     const contact = await Contact.create({
       name: trimmedName,
       phone: trimmedPhone,
@@ -57,31 +58,30 @@ export const submitContactController = async (req, res) => {
       </div>
     `;
 
-    // Try to send email but do not fail the whole request if SMTP errors occur.
-    try {
-      sendEmail({
-        subject: `New contact from ${trimmedName}`,
-        text: emailText,
-        html: emailHtml,
+    // 2. Gọi hàm gửi email chạy ngầm (Bỏ hoàn toàn chữ await)
+    sendEmail({
+      subject: `New contact from ${trimmedName}`,
+      text: emailText,
+      html: emailHtml,
+    })
+      .then(() => {
+        console.log("-> [Email] Đã gửi thông báo mail ngầm thành công.");
+      })
+      .catch((emailErr) => {
+        console.error(
+          "-> [Email Lỗi] Không thể gửi mail thông báo ngầm:",
+          emailErr?.message || emailErr
+        );
       });
-      return success(
-        res,
-        "Contact saved and email sent successfully",
-        contact,
-        201,
-      );
-    } catch (emailErr) {
-      console.error(
-        "Failed to send contact email:",
-        emailErr?.message || emailErr,
-      );
-      return success(
-        res,
-        "Contact saved but failed to send email",
-        { contact, emailError: emailErr?.message || String(emailErr) },
-        201,
-      );
-    }
+
+    // 3. Trả về thông báo thành công cho Frontend LẬP TỨC (Không bắt client chờ đợi)
+    return success(
+      res,
+      "Contact saved successfully",
+      contact,
+      201
+    );
+
   } catch (err) {
     return error(res, err.message || "Failed to submit contact", 500);
   }
