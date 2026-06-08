@@ -4,11 +4,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const host = process.env.EMAIL_HOST || "smtp.gmail.com";
-const port = process.env.EMAIL_PORT ? Number(process.env.EMAIL_PORT) : 587;
+const port = process.env.EMAIL_PORT ? Number(process.env.EMAIL_PORT) : 465;
 const secure =
   typeof process.env.EMAIL_SECURE !== "undefined"
     ? process.env.EMAIL_SECURE.toLowerCase() === "true"
-    : false;
+    : port === 465;
 
 const user = process.env.EMAIL_USER;
 const rawPass = process.env.EMAIL_PASS || "";
