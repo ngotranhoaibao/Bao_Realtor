@@ -59,7 +59,7 @@ export const submitContactController = async (req, res) => {
 
     // Try to send email but do not fail the whole request if SMTP errors occur.
     try {
-      await sendEmail({
+      sendEmail({
         subject: `New contact from ${trimmedName}`,
         text: emailText,
         html: emailHtml,
