@@ -8,79 +8,55 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import toast from "react-hot-toast";
-import { submitContact } from "@/services/api/contact";
+import RegisterDialog from "@/components/RegisterDialog";
+import PhoneIcon from "@/components/PhoneIcon";
+import ZaloIcon from "@/components/ZaloIcon";
+import ScrollUp from "@/components/ScrollUp";
 import {
-  Calendar,
   ShieldCheck,
   Layers,
   MapPin,
-  Phone,
-  Mail,
   Building2,
   Briefcase,
   TrendingUp,
   KeyRound,
-  CalendarDays,
   ChevronDown,
   Sparkles,
   CheckCircle2,
   Heart,
   Gem,
   Award,
+  Phone,
+  Mail,
+  Clock,
 } from "lucide-react";
 
 const NewLanding = () => {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!name || !phone) {
-      toast.error("Vui lòng nhập tên và số điện thoại");
-      return;
-    }
-    setLoading(true);
-    try {
-      const payload = {
-        name: name.trim(),
-        phone: phone.trim(),
-      };
-
-      await submitContact(payload);
-      toast.success("Đã gửi thông tin. Chúng tôi sẽ liên hệ sớm.");
-      setName("");
-      setPhone("");
-    } catch (err) {
-      console.error(err);
-      const msg = err?.response?.data?.message || err.message || "Gửi thất bại";
-      toast.error(msg);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [isStickyOpen, setIsStickyOpen] = useState(false);
 
   return (
-    <div className="w-full bg-white text-slate-950 font-sans antialiased">
+    <div
+      className="w-full bg-white text-slate-950 antialiased relative"
+      style={{ fontFamily: "'Plus Jakarta Sans', 'Inter', sans-serif" }}
+    >
+      {/* Cấu trúc nhúng Font trực tiếp từ Google Fonts để sửa lỗi vỡ dấu */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+        .font-title-luxury {
+          font-family: 'Playfair Display', serif;
+        }
+      `}</style>
+
       {/* ========================================================================= */}
-      {/* 1. HERO SLIDER BANNER — ĐẠI CẢNH ĐÊM KHÔNG GIAN VÔ CỰC */}
+      {/* 1. HERO SLIDER BANNER — ĐẠI CẢNH ĐÊM KHÔNG GIAN VÔ CỰ LOGO */}
       {/* ========================================================================= */}
-      <section className="relative w-full min-h-screen flex items-center justify-center bg-slate-950 overflow-hidden">
+      <section className="relative w-full min-h-screen flex flex-col justify-between bg-slate-950 overflow-hidden">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat animate-fade-in"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.2), rgba(0,0,0,0.65)), url('https://thelumia-danang.vn/wp-content/uploads/2025/07/the-lumia-da-nang-background.jpg')`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.75)), url('https://thelumia-danang.vn/wp-content/uploads/2025/07/the-lumia-da-nang-background.jpg')`,
           }}
         />
 
@@ -104,14 +80,16 @@ const NewLanding = () => {
             </div>
           </div>
 
-          <div className="text-center space-y-6 my-auto pointer-events-auto max-w-4xl mx-auto px-2">
+          <div className="absolute top-[32%] left-1/2 -translate-x-1/2 text-center space-y-5 max-w-6xl w-full px-4 pointer-events-auto">
             <div className="inline-flex items-center gap-2 bg-amber-500 text-slate-950 px-5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] uppercase shadow-lg border border-amber-400">
               TRỰC TIẾP CHỦ ĐẦU TƯ — GIÁ TỐT NHẤT
             </div>
-            <h1 className="text-5xl md:text-8xl font-black tracking-tight uppercase leading-none drop-shadow-[0_5px_15px_rgba(0,0,0,0.9)] bg-gradient-to-b from-white to-slate-200 bg-clip-text text-transparent">
+
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-title-luxury tracking-wide uppercase leading-tight py-2 bg-gradient-to-b from-white to-slate-200 bg-clip-text text-transparent whitespace-nowrap drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               THE LUMIA ĐÀ NẴNG
             </h1>
-            <p className="text-xl md:text-3xl font-medium text-amber-400 tracking-wider max-w-3xl mx-auto drop-shadow-[0_3px_8px_rgba(0,0,0,0.9)] uppercase">
+
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-amber-400 tracking-wider max-w-4xl mx-auto uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,1)]">
               HỆ SINH THÁI DỊCH VỤ & THƯƠNG MẠI ĐẲNG CẤP
             </p>
           </div>
@@ -120,12 +98,12 @@ const NewLanding = () => {
             <Button
               onClick={() =>
                 document
-                  .getElementById("dang-ky-tai-lieu")
+                  .getElementById("chinh-sach-ban-hang")
                   .scrollIntoView({ behavior: "smooth" })
               }
               className="bg-white/10 hover:bg-white text-white hover:text-slate-950 border-2 border-white font-bold uppercase tracking-[0.2em] text-xs px-10 py-7 rounded-full transition-all duration-300 shadow-2xl backdrop-blur-sm"
             >
-              TẢI BẢNG GIÁ GỐC
+              XEM CHÍNH SÁCH ƯU ĐÃI
             </Button>
             <ChevronDown className="h-7 w-7 text-amber-400 animate-bounce mt-3 drop-shadow-md" />
           </div>
@@ -137,145 +115,115 @@ const NewLanding = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 1B. CHÍNH SÁCH BÁN HÀNG HOT & FORM ĐĂNG KÝ NHẬN BẢNG GIÁ (image_1df124.png) */}
+      {/* 1B. CHÍNH SÁCH BÁN HÀNG */}
       {/* ========================================================================= */}
       <section
-        id="dang-ky-tai-lieu"
-        className="relative w-full overflow-hidden bg-slate-950"
+        id="chinh-sach-ban-hang"
+        className="relative w-full bg-slate-950 py-16 md:py-24 border-b border-purple-950/30 overflow-hidden"
       >
+        <div className="absolute top-12 left-1/4 w-96 h-96 bg-purple-600/15 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-12 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px] pointer-events-none" />
+
         <div
-          className="relative min-h-[70vh] md:min-h-[85vh] flex items-center justify-center py-20 px-4 bg-cover bg-center"
+          className="absolute inset-0 opacity-40 pointer-events-none"
           style={{
-            backgroundImage: `linear-gradient(rgba(15,23,42,0.75), rgba(15,23,42,0.85)), url('https://thelumia-danang.vn/wp-content/uploads/2025/07/booking-the-lumia-da-nang.jpg')`,
+            backgroundImage: `radial-gradient(circle at 10% 20%, rgba(88, 28, 135, 0.15) 0%, transparent 45%), 
+                              radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%)`,
           }}
-        >
-          <div className="container mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10 max-w-6xl">
-            {/* Cột chữ trái: Show chính sách dự kiến cực HOT */}
-            <div className="lg:col-span-6 text-white space-y-6 text-left">
-              <div className="inline-block bg-red-600/20 text-red-400 border border-red-500/30 px-4 py-1 rounded-md text-xs font-bold uppercase tracking-wider">
-                Ưu đãi độc quyền đợt 1
+        />
+
+        <div className="container mx-auto px-4 max-w-7xl relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="w-full flex justify-center items-center">
+              <div className="w-full max-w-2xl overflow-hidden rounded-3xl shadow-[0_0_60px_rgba(147,51,234,0.2)] bg-slate-900 border border-purple-500/20 p-2 group">
+                <img
+                  src="GIACA.jpg"
+                  alt="Chính sách giá bán và ưu đãi nhà phố xây sẵn"
+                  loading="lazy"
+                  className="w-full h-auto object-cover rounded-2xl group-hover:scale-[1.01] transition-transform duration-300"
+                />
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-amber-400 uppercase tracking-wide leading-tight">
-                CHÍNH SÁCH BÁN HÀNG DỰ KIẾN CỰC HOT
-              </h2>
-              <div className="w-16 h-1 bg-amber-500 rounded"></div>
+            </div>
+
+            <div className="w-full text-white space-y-6 text-left flex flex-col justify-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-purple-900/40 text-purple-300 border border-purple-500/30 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider backdrop-blur-sm mb-4">
+                  <Sparkles className="h-3.5 w-3.5 text-purple-400" /> Chính
+                  thức nhận Đặt chỗ Booking
+                </div>
+                <h2 className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-cyan-200 uppercase tracking-wide leading-normal drop-shadow-sm">
+                  CHÍNH SÁCH BÁN HÀNG & SUẤT NỘI BỘ ĐỢT 1
+                </h2>
+                <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded mt-2"></div>
+              </div>
+
+              <p className="text-slate-300 text-base md:text-lg leading-relaxed text-justify font-medium">
+                Mở quỹ căn Đợt 1 phân khu thấp tầng{" "}
+                <span className="text-purple-400 font-bold">
+                  The Lumia Đà Nẵng
+                </span>{" "}
+                với chính sách chiết khấu cộng dồn vô cùng hấp dẫn:
+              </p>
 
               <ul className="space-y-4 text-base md:text-lg font-medium text-slate-200">
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-amber-500 shrink-0" />
+                <li className="flex items-start gap-3 bg-purple-950/25 border border-purple-900/40 p-3 rounded-xl backdrop-blur-sm shadow-sm">
+                  <CheckCircle2 className="h-6 w-6 text-cyan-400 shrink-0 mt-0.5" />
                   <span>
-                    Ngân hàng bảo lãnh, hỗ trợ vay vốn tới{" "}
-                    <span className="text-amber-400 font-bold">70%</span> giá
-                    trị căn hộ.
+                    <strong className="text-white">Đặt chỗ (Booking):</strong>{" "}
+                    100 triệu/căn{" "}
+                    <span className="text-slate-400 font-normal text-sm">
+                      (Hoàn lại 100% nếu không khớp căn).
+                    </span>
                   </span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-amber-500 shrink-0" />
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-purple-400 shrink-0 mt-0.5" />
                   <span>
-                    Chiết khấu đặc quyền cực cao khi thanh toán sớm và theo tiến
-                    độ.
+                    <strong className="text-white">Chiết khấu ưu đãi:</strong>{" "}
+                    Tặng ngay <strong className="text-amber-400">2%</strong> khi
+                    ráp căn đợt đầu; chiết khấu thêm{" "}
+                    <strong className="text-amber-400">1%</strong> khi mua sỉ từ
+                    2 căn trở lên.
                   </span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-amber-500 shrink-0" />
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-purple-400 shrink-0 mt-0.5" />
                   <span>
-                    Nhận thêm ưu đãi đặc biệt hấp dẫn khi giao dịch mua từ 2 căn
-                    trở lên.
+                    <strong className="text-white">Thanh toán sớm:</strong>{" "}
+                    Hưởng chiết khấu dòng tiền lên đến{" "}
+                    <strong className="text-amber-400">8%/năm</strong> hoặc giảm
+                    trực tiếp từ{" "}
+                    <strong className="text-amber-400">3% – 7%</strong> giá bán.
                   </span>
                 </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-amber-500 shrink-0" />
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="h-6 w-6 text-cyan-400 shrink-0 mt-0.5" />
                   <span>
-                    Dự án được quản lý và vận hành bởi đơn vị uy tín hàng đầu
-                    quốc tế.
-                  </span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-amber-500 shrink-0" />
-                  <span>
-                    Tiềm năng tăng giá lớn đón đầu quy hoạch cảng biển quốc tế
-                    Liên Chiểu.
+                    <strong className="text-white">Đặc quyền bàn giao:</strong>{" "}
+                    Hỗ trợ ủy thác vận hành cho thuê sinh lời và bố trí xe đưa
+                    đón tận nơi tại Sân bay Đà Nẵng tham quan dự án.
                   </span>
                 </li>
               </ul>
 
-              <p className="text-sm md:text-base text-slate-400 italic pt-2">
-                * Liên hệ Hotline Phòng Kinh Doanh hoặc Đăng ký biểu mẫu để nhận
-                bảng hàng 20 căn suất nội bộ giá ưu đãi riêng từ Chủ đầu tư.
+              <p className="text-xs md:text-sm text-slate-400 italic pt-1">
+                * Số lượng suất nội bộ có giới hạn. Vui lòng liên hệ Hotline
+                hoặc Đăng ký nhận bảng giá chi tiết ở biểu mẫu phía dưới.
               </p>
             </div>
-
-            {/* Cột phải: Form Đăng ký nhận bảng giá chuẩn UI của bạn */}
-            <div className="lg:col-span-6 flex justify-center w-full">
-              <Card className="w-full max-w-md bg-slate-950/85 border border-white/10 text-white backdrop-blur-md p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.6)] rounded-3xl">
-                <CardHeader className="space-y-2 p-0 pb-6 text-center">
-                  <CardTitle className="text-2xl md:text-3xl font-black text-amber-500 tracking-wide uppercase">
-                    ĐĂNG KÝ NHẬN BẢNG GIÁ
-                  </CardTitle>
-                  <CardDescription className="text-slate-300 text-xs md:text-sm font-semibold uppercase tracking-wider text-red-500">
-                    BẢNG HÀNG 20 CĂN GIÁ ƯU ĐÃI RIÊNG
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <form className="space-y-5" onSubmit={handleSubmit}>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="hero-name"
-                        className="text-xs font-bold uppercase tracking-wider text-slate-300"
-                      >
-                        Họ và tên *
-                      </Label>
-                      <Input
-                        id="hero-name"
-                        placeholder="Nhập tên của bạn"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="bg-white border-none text-slate-900 h-12 rounded-xl focus-visible:ring-2 focus-visible:ring-amber-500 font-medium"
-                        required
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="hero-phone"
-                        className="text-xs font-bold uppercase tracking-wider text-slate-300"
-                      >
-                        Số điện thoại *
-                      </Label>
-                      <Input
-                        id="hero-phone"
-                        type="tel"
-                        placeholder="Nhập số điện thoại"
-                        value={phone}
-                        onChange={(e) => setPhone(e.target.value)}
-                        className="bg-white border-none text-slate-900 h-12 rounded-xl focus-visible:ring-2 focus-visible:ring-amber-500 font-medium"
-                        required
-                      />
-                    </div>
-                    <Button
-                      disabled={loading}
-                      type="submit"
-                      className={`w-full h-14 ${loading ? "opacity-60 cursor-wait" : "bg-red-600 hover:bg-red-700"} text-white font-black uppercase tracking-widest transition-all rounded-xl shadow-lg border border-red-700 text-sm py-6 mt-2`}
-                    >
-                      {loading ? "Đang gửi..." : "NHẬN BẢNG GIÁ GỐC"}
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-            </div>
           </div>
-          <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 2. TỔNG QUAN DỰ ÁN — HÌNH CHỮ TO RÕ, CÂN BẰNG CHIỀU CAO CAO CẤP */}
+      {/* 2. TỔNG QUAN DỰ ÁN */}
       {/* ========================================================================= */}
       <section id="tong-quan" className="py-16 md:py-24 container mx-auto px-4">
         <div className="text-center mb-12 md:mb-16">
-          <h1 className="text-3xl md:text-5xl font-black text-amber-700 uppercase tracking-wide">
+          <h2 className="text-3xl md:text-5xl font-black font-title-luxury text-amber-700 uppercase tracking-wide leading-normal">
             TỔNG QUAN DỰ ÁN THE LUMIA ĐÀ NẴNG
-          </h1>
-          <div className="w-24 h-1 bg-amber-600 mx-auto mt-4"></div>
+          </h2>
+          <div className="w-24 h-1 bg-amber-600 mx-auto mt-2"></div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
@@ -384,95 +332,119 @@ const NewLanding = () => {
       {/* ========================================================================= */}
       {/* 3. VỊ TRÍ CHI TIẾT CHIẾN LƯỢC QUẬN LIÊN CHIỂU */}
       {/* ========================================================================= */}
-      <section id="vi-tri" className="py-16 md:py-20 bg-slate-800 text-white">
-        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-6xl">
-          <div className="space-y-6">
-            <h2 className="text-2xl md:text-4xl font-bold text-amber-500 flex items-center gap-2 uppercase">
-              <MapPin className="h-7 w-7" /> VỊ TRÍ KIM CƯƠNG LIÊN CHIỂU
-            </h2>
-            <div className="w-16 h-1 bg-amber-500 rounded"></div>
-            <div className="text-slate-200 text-justify text-base md:text-lg space-y-4 leading-relaxed">
-              <p>
-                <strong className="text-white">The Lumia Đà Nẵng</strong> tọa
-                lạc đắc địa tại mặt đường Nguyễn Tất Thành nối dài, trục kinh tế
-                huyết mạch kết nối giao thương giữa trung tâm thành phố và Cảng
-                biển quốc tế Liên Chiểu.
-              </p>
-              <p>
-                Liên Chiểu là quận kinh tế mới sở hữu tiềm lực phát triển vượt
-                trội cùng lúc cả 3 mũi nhọn:{" "}
-                <span className="text-amber-400 font-semibold">
-                  Công nghiệp sạch — Logistics hàng hải — Du lịch cảnh quan sinh
-                  thái sinh khí
-                </span>
-                . Đảm bảo cho biên độ tăng trưởng đất nền thấp tầng x2, x3 trong
-                tương lai gần.
-              </p>
+      <section
+        id="vi-tri"
+        className="py-16 md:py-20 bg-slate-800 text-white relative overflow-hidden"
+      >
+        <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch max-w-6xl relative z-10">
+          <div className="space-y-4 w-full flex flex-col justify-between py-1">
+            <div className="space-y-3">
+              <h2 className="text-2xl md:text-4xl font-bold font-title-luxury text-amber-500 flex items-center gap-2 uppercase leading-normal">
+                <MapPin className="h-7 w-7 text-amber-500" /> VỊ TRÍ KIM CƯƠNG
+                LIÊN CHIỂU
+              </h2>
+              <div className="w-16 h-1 bg-amber-500 rounded"></div>
+
+              <div className="text-slate-200 text-justify text-sm md:text-base space-y-3 leading-relaxed font-medium">
+                <p>
+                  <strong className="text-white">The Lumia Đà Nẵng</strong> tọa
+                  lạc đắc địa tại mặt đường Nguyễn Tất Thành nối dài, trục kinh
+                  tế huyết mạch kết nối giao thương giữa trung tâm thành phố và
+                  Cảng biển quốc tế Liên Chiểu.
+                </p>
+                <p>
+                  Liên Chiểu là quận kinh tế mới sở hữu tiềm lực phát triển vượt
+                  trội cùng lúc cả 3 mũi nhọn:{" "}
+                  <span className="text-amber-400 font-semibold">
+                    Công nghiệp sạch — Logistics hàng hải — Du lịch cảnh quan
+                    sinh thái sinh khí
+                  </span>
+                  . Đảm bảo cho biên độ tăng trưởng đất nền thấp tầng trong
+                  tương lai gần.
+                </p>
+              </div>
             </div>
-            <div className="bg-slate-900/60 rounded-xl overflow-hidden border border-slate-700 p-2">
-              <Table>
-                <TableHeader className="bg-slate-900">
-                  <TableRow>
-                    <TableHead className="text-amber-500 font-bold text-sm md:text-base">
-                      Mốc liên kết vùng (Cách biển 5 phút)
-                    </TableHead>
-                    <TableHead className="text-amber-500 font-bold text-sm md:text-base text-right">
-                      Thời gian
-                    </TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody className="text-slate-200 text-sm md:text-base">
-                  <TableRow>
-                    <TableCell>
+
+            <div className="w-full space-y-2 pt-2">
+              <div className="text-amber-500 font-bold text-xs md:text-sm pl-1 tracking-wide uppercase">
+                Mốc liên kết vùng (Cách biển 5 phút):
+              </div>
+
+              <div className="grid grid-cols-1 gap-2">
+                <div className="bg-slate-900/60 border border-slate-700/50 p-2.5 rounded-xl flex items-center justify-between gap-4 hover:bg-slate-900/90 transition-colors">
+                  <div className="flex items-start gap-2">
+                    <MapPin className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span className="text-xs md:text-sm font-medium text-slate-200 leading-normal">
                       ĐH Bách Khoa, ĐH Sư Phạm, Chợ Nam Ô, THPT Đàm Quang Trung
-                    </TableCell>
-                    <TableCell className="text-right text-amber-400 font-bold">
+                    </span>
+                  </div>
+                  <div className="shrink-0 pl-2">
+                    <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">
                       5 phút
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900/60 border border-slate-700/50 p-2.5 rounded-xl flex items-center justify-between gap-4 hover:bg-slate-900/90 transition-colors">
+                  <div className="flex items-start gap-2">
+                    <MapPin className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span className="text-xs md:text-sm font-medium text-slate-200 leading-normal">
                       Cảng biển quốc tế Liên Chiểu, KDL Nam Ô, Công viên
                       Mikazuki
-                    </TableCell>
-                    <TableCell className="text-right text-amber-400 font-bold">
+                    </span>
+                  </div>
+                  <div className="shrink-0 pl-2">
+                    <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">
                       10 phút
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900/60 border border-slate-700/50 p-2.5 rounded-xl flex items-center justify-between gap-4 hover:bg-slate-900/90 transition-colors">
+                  <div className="flex items-start gap-2">
+                    <MapPin className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span className="text-xs md:text-sm font-medium text-slate-200 leading-normal">
                       Bến xe trung tâm thành phố, Cầu vượt Ngã ba Huế
-                    </TableCell>
-                    <TableCell className="text-right text-amber-400 font-bold">
-                      15 fluid
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell>
+                    </span>
+                  </div>
+                  <div className="shrink-0 pl-2">
+                    <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">
+                      15 phút
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-slate-900/60 border border-slate-700/50 p-2.5 rounded-xl flex items-center justify-between gap-4 hover:bg-slate-900/90 transition-colors">
+                  <div className="flex items-start gap-2">
+                    <MapPin className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                    <span className="text-xs md:text-sm font-medium text-slate-200 leading-normal">
                       Sân bay quốc tế Đà Nẵng, Cầu Sông Hàn, Trung tâm hành
                       chính
-                    </TableCell>
-                    <TableCell className="text-right text-amber-400 font-bold">
+                    </span>
+                  </div>
+                  <div className="shrink-0 pl-2">
+                    <span className="text-amber-400 font-bold text-xs md:text-sm whitespace-nowrap">
                       20 phút
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
+                    </span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="space-y-4">
-            <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 aspect-[16/10]">
+
+          <div className="space-y-4 w-full flex flex-col justify-between">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
               <img
                 src="https://thelumia-danang.vn/wp-content/uploads/2025/07/vi-tri-the-lumia-da-nang.jpg"
-                alt="Bản đồ liên kết vùng"
-                className="w-full h-full object-cover"
+                alt="Bản đồ liên kết vùng dự án The Lumia"
+                className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
               />
             </div>
-            <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700 aspect-[16/10]">
+            <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
               <img
                 src="https://thelumiadanang.com.vn/wp-content/uploads/2025/04/The-Lumia-Da-Nang-Quan-Lien-Chieu-1400x788.jpg"
-                alt="Hạ tầng Liên Chiểu"
-                className="w-full h-full object-cover"
+                alt="Hạ tầng Quận Liên Chiểu Đà Nẵng"
+                className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
               />
             </div>
           </div>
@@ -488,7 +460,7 @@ const NewLanding = () => {
       >
         <div className="container mx-auto px-4 max-w-5xl space-y-12">
           <div className="text-center space-y-3">
-            <h2 className="text-3xl md:text-4xl font-black text-amber-700 uppercase">
+            <h2 className="text-3xl md:text-4xl font-black font-title-luxury text-amber-700 uppercase leading-normal">
               THIẾT KẾ — TỔNG MẶT BẰNG DỰ ÁN
             </h2>
             <p className="max-w-3xl mx-auto text-slate-600 text-base md:text-lg leading-relaxed">
@@ -507,7 +479,6 @@ const NewLanding = () => {
             />
           </div>
 
-          {/* Bảng thông số kỹ thuật phân bổ Giai đoạn 1 */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch pt-6">
             <div className="bg-slate-900 text-white p-6 md:p-8 rounded-2xl flex flex-col justify-center lg:col-span-1">
               <h4 className="text-lg font-bold text-amber-400 uppercase tracking-wider mb-2">
@@ -584,133 +555,148 @@ const NewLanding = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. KHỐI BOX NÂNG CẤP: LÍ DO VÀNG ĐỂ SỞ HỮU — SANG TRỌNG VÀ THU HÚT */}
+      {/* 5. LÝ DO VÀNG ĐỂ SỞ HỮU THE LUMIA */}
       {/* ========================================================================= */}
-      <section className="py-20 container mx-auto px-4 max-w-5xl space-y-12">
+      <section className="py-20 container mx-auto px-4 max-w-7xl space-y-12">
         <div className="text-center space-y-3">
-          <h2 className="text-3xl md:text-4xl font-black text-amber-700 uppercase tracking-wide">
+          <h2 className="text-3xl md:text-4xl font-black font-title-luxury text-amber-700 uppercase tracking-wide leading-normal">
             LÝ DO VÀNG ĐỂ SỞ HỮU THE LUMIA
           </h2>
           <div className="w-16 h-1 bg-amber-600 mx-auto"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md">
-            <div className="p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
-              <Sparkles className="h-6 w-6" />
-            </div>
-            <div>
-              <h4 className="font-bold text-lg text-slate-900 mb-1">
-                LỰA CHỌN HOÀN HẢO
-              </h4>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed text-justify">
-                Biệt thự, shophouse, liền kề diện tích lớn, đầy đủ tiện nghi với
-                tầm nhìn khoáng đạt bên mặt hồ, biên độ tăng giá phi mã đã hiện
-                hữu rõ nét.
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="w-full lg:col-span-5 flex justify-center items-center">
+            <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-100 p-2">
+              <img
+                alt="Lý do để sở hữu dự án Lumia Đà Nẵng sơ đồ"
+                loading="lazy"
+                decoding="async"
+                className="w-full h-auto object-contain mx-auto"
+                src="https://thelumiadanang.com.vn/wp-content/uploads/2025/09/CIRCLE-838x800.png"
+              />
             </div>
           </div>
 
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md">
-            <div className="p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
-              <MapPin className="h-6 w-6" />
+          <div className="w-full lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3 transition-all hover:bg-white hover:shadow-md h-full">
+              <div className="p-2.5 bg-red-100 text-red-600 rounded-xl shrink-0">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 mb-1">
+                  LỰA CHỌN HOÀN HẢO
+                </h4>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed text-justify">
+                  Biệt thự, shophouse, liền kề diện tích lớn, tầm nhìn khoáng
+                  đạt bên mặt hồ, biên độ tăng giá phi mã đã hiện hữu rõ nét.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-lg text-slate-900 mb-1">
-                VỊ TRÍ ĐẮC ĐỊA
-              </h4>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed text-justify">
-                Tọa lạc ngay mặt tiền đường chiến lược Nguyễn Tất Thành nối dài,
-                cơ sở hạ tầng đồng bộ vượt trội, cách bãi tắm biển chỉ đúng 5
-                phút di chuyển.
-              </p>
-            </div>
-          </div>
 
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md">
-            <div className="p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
-              <Heart className="h-6 w-6" />
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3 transition-all hover:bg-white hover:shadow-md h-full">
+              <div className="p-2.5 bg-red-100 text-red-600 rounded-xl shrink-0">
+                <MapPin className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 mb-1">
+                  VỊ TRÍ ĐẮC ĐỊA
+                </h4>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed text-justify">
+                  Tọa lạc mặt tiền đường Nguyễn Tất Thành nối dài, hạ tầng đồng
+                  bộ vượt trội, cách bãi tắm biển chỉ đúng 5 phút di chuyển.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-lg text-slate-900 mb-1">
-                TÂM ĐIỂM XANH AN LÀNH
-              </h4>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed text-justify">
-                Mật độ xây dựng thấp lý tưởng chỉ 30%, bao bọc xung quanh là
-                công viên cây xanh chủ đề ngập tràn năng lượng sinh khí trong
-                lành.
-              </p>
-            </div>
-          </div>
 
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md">
-            <div className="p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
-              <Gem className="h-6 w-6" />
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3 transition-all hover:bg-white hover:shadow-md h-full">
+              <div className="p-2.5 bg-red-100 text-red-600 rounded-xl shrink-0">
+                <Heart className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 mb-1">
+                  TÂM ĐIỂM XANH AN LÀNH
+                </h4>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed text-justify">
+                  Mật độ xây dựng lý tưởng chỉ 30%, bao bọc xung quanh là chuỗi
+                  công viên cây xanh chủ đề ngập tràn năng lượng sinh khí.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-lg text-slate-900 mb-1">
-                TIỆN ÍCH CAO CẤP
-              </h4>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed text-justify">
-                Đem lại cho gia chủ đầy đủ chuỗi tiện nghi thượng lưu đặc quyền,
-                tận hưởng phong cách sống chuẩn resort nghỉ dưỡng 5 sao ngay tại
-                tổ ấm.
-              </p>
-            </div>
-          </div>
 
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md">
-            <div className="p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
-              <Award className="h-6 w-6" />
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3 transition-all hover:bg-white hover:shadow-md h-full">
+              <div className="p-2.5 bg-red-100 text-red-600 rounded-xl shrink-0">
+                <Gem className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 mb-1">
+                  TIỆN ÍCH CAO CẤP
+                </h4>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed text-justify">
+                  Đem lại đầy đủ chuỗi tiện nghi thượng lưu đặc quyền, tận hưởng
+                  phong cách sống resort nghỉ dưỡng 5 sao tại tổ ấm.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-lg text-slate-900 mb-1">
-                TÂM ĐIỂM THỊNH VƯỢNG
-              </h4>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed text-justify">
-                Thừa hưởng trọn vẹn hạ tầng trung tâm Liên Chiểu với hệ thống
-                trường học liên cấp, bệnh viện đa khoa quốc tế và đại trung tâm
-                thương mại sầm uất.
-              </p>
-            </div>
-          </div>
 
-          <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md">
-            <div className="p-3 bg-red-100 text-red-600 rounded-xl shrink-0">
-              <ShieldCheck className="h-6 w-6" />
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3 transition-all hover:bg-white hover:shadow-md h-full">
+              <div className="p-2.5 bg-red-100 text-red-600 rounded-xl shrink-0">
+                <Award className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 mb-1">
+                  TÂM ĐIỂM THỊNH VƯỢNG
+                </h4>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed text-justify">
+                  Thừa hưởng trọn vẹn hạ tầng Liên Chiểu với hệ thống trường
+                  liên cấp, bệnh viện quốc tế và trung tâm thương mại sầm uất.
+                </p>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold text-lg text-slate-900 mb-1">
-                PHÁP LÝ & TIẾN ĐỘ
-              </h4>
-              <p className="text-sm md:text-base text-slate-600 leading-relaxed text-justify">
-                Hồ sơ pháp lý hoàn thiện sạch sẽ, tiến độ thi công hạ tầng kỹ
-                thuật thần tốc vượt tiến độ mang lại sự an tâm tài chính tuyệt
-                đối cho khách hàng.
-              </p>
+
+            <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-3 transition-all hover:bg-white hover:shadow-md h-full">
+              <div className="p-2.5 bg-red-100 text-red-600 rounded-xl shrink-0">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-slate-900 mb-1">
+                  PHÁP LÝ & TIẾN ĐỘ
+                </h4>
+                <p className="text-xs md:text-sm text-slate-600 leading-relaxed text-justify">
+                  Hồ sơ pháp lý hoàn thiện minh bạch, tiến độ thi công hạ tầng
+                  thần tốc vượt kế hoạch mang lại sự an tâm tuyệt đối.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. HỆ THỐNG TIỆN ÍCH ALL-IN-ONE & TABS PHỐI CẢNH — ĐÃ SỬA KHÍT THANH MENU ĐEN */}
+      {/* 6. HỆ THỐNG TIỆN ÍCH ALL-IN-ONE & TABS PHỐI CẢNH THỰC TẾ */}
       {/* ========================================================================= */}
       <section id="tien-do" className="py-16 md:py-24 bg-slate-950 text-white">
         <div className="container mx-auto px-4 max-w-5xl space-y-14">
-          <div className="text-center space-y-3">
-            <h2 className="text-2xl md:text-4xl font-black text-amber-500 uppercase tracking-wide">
-              HỆ TIỆN ÍCH ALL-IN-ONE ĐẲNG CẤP ĐẦU TIÊN
+          <div className="text-center space-y-4 max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-4xl font-black font-title-luxury text-amber-500 uppercase tracking-wide leading-normal">
+              HỆ TIỆN ÍCH ALL-IN-ONE LẦN ĐẦU TIÊN CÓ MẶT TẠI THÀNH PHỐ ĐÀ NẴNG
             </h2>
-            <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto">
-              Chuẩn mực sống sinh thái quốc tế tích hợp trọn vẹn mô hình
-              Home2Hub đa chức năng lý tưởng vừa để ở vừa kinh doanh sinh lời
+            <div className="w-16 h-1 bg-gradient-to-r from-purple-500 to-cyan-400 rounded mx-auto mt-2"></div>
+            <p className="text-slate-300 text-base md:text-lg leading-relaxed text-justify sm:text-center font-medium pt-2">
+              Với <strong>The Lumia Da Nang</strong>, lần đầu tiên tại Thành phố
+              đáng sống bậc nhất Việt Nam, có một Khu đô thị được tích hợp chuẩn
+              sống quốc tế với{" "}
+              <strong>Hệ sinh thái tiện ích All – in – one</strong> đáp ứng trọn
+              vẹn mọi nhu cầu của cư dân với chất lượng cao nhất. Đó là một khu
+              đô thị sinh thái có đầy đủ mọi thứ từ các công viên, trường học
+              cho đến bệnh viện, trung tâm thương mại, các khu phố sầm uất hay
+              các tiện ích vui chơi giải trí và công viên cây xanh tràn đầy sinh
+              khí và năng lượng.
             </p>
           </div>
 
           <div className="bg-slate-900 rounded-3xl p-3 border border-slate-800 shadow-2xl">
-            <Tabs defaultValue="overview" className="w-full">
-              {/* ĐÃ SỬA: Chuyển sang inline-flex để thanh menu đen ôm sát khít nút bấm, không bị dư thừa */}
+            <Tabs defaultValue="images" className="w-full">
               <div className="w-full flex justify-center pb-2">
                 <TabsList className="inline-flex items-center bg-slate-950 p-1.5 rounded-2xl h-auto gap-1">
                   <TabsTrigger
@@ -778,54 +764,162 @@ const NewLanding = () => {
 
               <TabsContent
                 value="images"
-                className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 focus-visible:outline-none"
+                className="p-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 focus-visible:outline-none"
               >
                 <div className="space-y-2">
-                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[4/3] shadow-md">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
                       src="https://thelumia-danang.vn/wp-content/uploads/2025/07/benh-vien-quoc-te-the-lumia-da-nang.jpg"
                       alt="Bệnh viện"
+                      loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 font-medium text-center">
-                    Bệnh viện đa khoa quốc tế Lumia
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Bệnh viện quốc tế Lumia
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[4/3] shadow-md">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
                       src="https://thelumia-danang.vn/wp-content/uploads/2025/07/truong-hoc-quoc-te-the-lumia-da-nang.jpg"
                       alt="Trường học"
+                      loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 font-medium text-center">
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
                     Trường học quốc tế liên cấp
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[4/3] shadow-md">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
                       src="https://thelumia-danang.vn/wp-content/uploads/2025/07/trung-tam-thuong-mai-the-lumia-da-nang.jpg"
                       alt="Trung tâm thương mại"
+                      loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 font-medium text-center">
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
                     Đại trung tâm thương mại sầm uất
                   </p>
                 </div>
                 <div className="space-y-2">
-                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[4/3] shadow-md">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
                       src="https://thelumia-danang.vn/wp-content/uploads/2025/07/tuyen-pho-thuong-mai-the-lumia-da-nang.jpg"
-                      alt="Tuyến phố thương mại"
+                      alt="Tuyến phố"
+                      loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
                     />
                   </div>
-                  <p className="text-xs text-slate-400 font-medium text-center">
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
                     Tuyến phố Shophouse kinh doanh
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/cong-vien-chu-de-the-lumia-da-nang.jpg"
+                      alt="Công viên"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Công viên cây xanh chủ đề
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/ho-canh-quan-the-lumia-da-nang.jpg"
+                      alt="Hồ cảnh quan"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Hồ điều hòa trung tâm 1.6ha
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/san-tap-golf-the-lumia-da-nang.jpg"
+                      alt="Sân golf"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Sân tập Golf đẳng cấp
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/san-the-thao-the-lumia-da-nang.jpg"
+                      alt="Sân thê thao"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Khu thể thao phức hợp ngoài trời
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/san-choi-tre-em-the-lumia-da-nang.jpg"
+                      alt="Sân chơi"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Sân chơi phát triển tư duy trẻ em
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/rap-chieu-phim-ngoai-troi-the-lumia-da-nang.jpg"
+                      alt="Rạp phim"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Rạp chiếu phim ngoài trời
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/khu-cam-trai-the-lumia-da-nang.jpg"
+                      alt="Camping"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Khu cắm trại Camping sinh thái
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
+                    <img
+                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/clubhouse-the-lumia-da-nang.jpg"
+                      alt="Clubhouse"
+                      loading="lazy"
+                      className="w-full h-full object-cover hover:scale-105 transition duration-300"
+                    />
+                  </div>
+                  <p className="text-xs md:text-sm text-slate-300 font-semibold text-center mt-1">
+                    Clubhouse đặc quyền thượng lưu
                   </p>
                 </div>
               </TabsContent>
@@ -835,76 +929,47 @@ const NewLanding = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* 7. BIỂU MẪU ĐĂNG KÝ LIÊN HỆ ĐỘC QUYỀN BAN QUẢN LÝ */}
+      {/* POPUP FLOATING STICKY BUTTON — GIỐNG HỆT ẢNH MẪU (BẢNG GIÁ + CHÍNH SÁCH) */}
       {/* ========================================================================= */}
-      <section
-        id="lien-he"
-        className="py-16 md:py-24 bg-slate-50 border-t border-slate-200"
-      >
-        <div className="container mx-auto px-4 max-w-2xl text-center space-y-8">
-          <div className="space-y-3">
-            <h2 className="text-3xl md:text-4xl font-black text-amber-700 uppercase tracking-wide">
-              TƯ VẤN VÀ CUNG CẤP HỒ SƠ CHI TIẾT
-            </h2>
-            <p className="text-base md:text-lg text-slate-600 max-w-xl mx-auto">
-              Đăng ký ngay hôm nay để nhận trọn bộ tài liệu thiết kế mặt bằng
-              chi tiết từng phân khu và nhận tư vấn sơ đồ vị trí từ chuyên gia.
-            </p>
-          </div>
-
-          <Card className="p-8 border border-slate-200 shadow-xl bg-white rounded-[2rem] max-w-lg mx-auto">
-            <form className="space-y-5 text-left">
-              <div className="space-y-2">
-                <Label
-                  htmlFor="contact-name"
-                  className="text-sm font-bold uppercase tracking-wider text-slate-700"
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+        <Dialog open={isStickyOpen} onOpenChange={setIsStickyOpen}>
+          <DialogTrigger asChild>
+            <button className="flex items-center gap-2.5 bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 hover:from-amber-200 hover:to-amber-300 text-amber-950 font-black text-xs md:text-sm tracking-wider uppercase px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-2 border-white/60 backdrop-blur-sm transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 animate-bounce [animation-duration:3s]">
+              <div className="p-1 bg-amber-600 text-white rounded-md shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
                 >
-                  Họ và tên *
-                </Label>
-                <Input
-                  id="contact-name"
-                  placeholder="Nhập họ và tên *"
-                  className="bg-white border-slate-300 text-slate-900 h-12 rounded-xl text-base focus-visible:ring-red-500"
-                  required
-                />
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
+                </svg>
               </div>
-              <div className="space-y-2">
-                <Label
-                  htmlFor="contact-phone"
-                  className="text-sm font-bold uppercase tracking-wider text-slate-700"
-                >
-                  Số điện thoại *
-                </Label>
-                <Input
-                  id="contact-phone"
-                  type="tel"
-                  placeholder="Nhập số điện thoại *"
-                  className="bg-white border-slate-300 text-slate-900 h-12 rounded-xl text-base focus-visible:ring-red-500"
-                  required
-                />
+              <div className="flex flex-col text-left">
+                <span className="font-extrabold drop-shadow-sm whitespace-nowrap leading-none mb-0.5">
+                  BẢNG GIÁ + CHÍNH SÁCH
+                </span>
+                <span className="text-[9px] lowercase text-amber-800 font-semibold tracking-normal leading-none">
+                  Mới Nhất 06/2026
+                </span>
               </div>
-              <Button className="w-full h-14 bg-red-600 hover:bg-red-700 text-white font-extrabold uppercase tracking-[0.15em] text-sm md:text-base transition-all rounded-xl shadow-lg border border-red-700 py-6 mt-2">
-                BÁO QUỸ CĂN ĐẸP
-              </Button>
-            </form>
-          </Card>
+            </button>
+          </DialogTrigger>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm font-semibold text-slate-500 pt-6 border-t border-slate-200">
-            <a
-              href="tel:0969986263"
-              className="flex items-center gap-2 hover:text-amber-700 transition-colors"
-            >
-              <Phone className="h-4 w-4" /> 096 998 6263
-            </a>
-            <a
-              href="mailto:info@thelumia-danang.vn"
-              className="flex items-center gap-2 hover:text-amber-700 transition-colors"
-            >
-              <Mail className="h-4 w-4" /> info@thelumia-danang.vn
-            </a>
-          </div>
-        </div>
-      </section>
+          <DialogContent className="sm:max-w-lg bg-white p-6 md:p-8 rounded-[2rem] border border-slate-200 shadow-2xl focus-visible:outline-none">
+            <RegisterDialog onSuccess={() => setIsStickyOpen(false)} />
+          </DialogContent>
+        </Dialog>
+      </div>
+      <ZaloIcon />
+      <PhoneIcon />
+      <ScrollUp />
     </div>
   );
 };
