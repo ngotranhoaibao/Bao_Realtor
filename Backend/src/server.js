@@ -6,13 +6,11 @@ import contactRoute from "./routes/contact.route.js";
 import { verifyTransporter } from "./utils/email.js";
 dotenv.config();
 
-connectDB();
-
 const app = express();
 
 app.use(
   cors({
-    origin: ["http://localhost:5173",],
+    origin: ["http://localhost:5173", "https://the-meridian.com.vn"],
     credentials: true,
     methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -24,9 +22,11 @@ app.use("/api/contact", contactRoute);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
-  // Verify SMTP transporter but don't exit on failure; just log for developer.
+  
+  await connectDB();
+
   verifyTransporter().then((res) => {
     if (res.ok) console.log("SMTP transporter verified");
     else
