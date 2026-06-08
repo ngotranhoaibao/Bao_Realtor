@@ -1,61 +1,44 @@
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const host = process.env.EMAIL_HOST || "smtp.gmail.com";
-const port = process.env.EMAIL_PORT ? Number(process.env.EMAIL_PORT) : 587;
-const secure =
-  typeof process.env.EMAIL_SECURE !== "undefined"
-    ? process.env.EMAIL_SECURE.toLowerCase() === "true"
-    : false;
+const apiKey = process.env.RESEND_API_KEY;
+const from = process.env.EMAIL_FROM || "The Lumia <onboarding@resend.dev>";
+const defaultTo = process.env.EMAIL_TO;
+const resend = apiKey ? new Resend(apiKey) : null;
 
-const user = process.env.EMAIL_USER;
-const rawPass = process.env.EMAIL_PASS || "";
-const pass = rawPass.replace(/\s+/g, "");
-
-const transporter = nodemailer.createTransport({
-  host,
-  port,
-  secure,
-  requireTLS: port === 587,
-  connectionTimeout: 10000,
-  greetingTimeout: 10000,
-  socketTimeout: 15000,
-  auth: {
-    user,
-    pass,
-  },
-});
-
-export const sendEmail = async ({
-  subject,
-  text,
-  html,
-  to = process.env.EMAIL_TO || user,
-}) => {
-  if (!user || !pass) {
-    throw new Error(
-      "Email credentials are not configured. Set EMAIL_USER and EMAIL_PASS in .env.",
-    );
+export const sendEmail = async ({ subject, text, html, to = defaultTo }) => {
+  if (!apiKey) {
+    throw new Error("Resend API key is not configured. Set RESEND_API_KEY.");
   }
 
-  const mailOptions = {
-    from: process.env.EMAIL_FROM || user,
+  if (!to) {
+    throw new Error("Email recipient is not configured. Set EMAIL_TO.");
+  }
+
+  const { data, error } = await resend.emails.send({
+    from,
     to,
     subject,
     text,
     html,
-  };
+  });
 
-  return transporter.sendMail(mailOptions);
+  if (error) {
+    throw new Error(error.message || "Failed to send email with Resend.");
+  }
+
+  return data;
 };
 
 export const verifyTransporter = async () => {
-  try {
-    await transporter.verify();
-    return { ok: true };
-  } catch (err) {
-    return { ok: false, error: err };
+  if (!apiKey) {
+    return {
+      ok: false,
+      error: new Error("Resend API key is not configured. Set RESEND_API_KEY."),
+    };
   }
+
+  return { ok: true };
 };
