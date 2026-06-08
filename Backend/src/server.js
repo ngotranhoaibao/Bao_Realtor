@@ -11,7 +11,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://the-meridian.com.vn",
+      "https://thelumia-danang.vercel.app/",
       "https://thelumia-danang.vn",
       "https://www.thelumia-danang.vn",
     ],
