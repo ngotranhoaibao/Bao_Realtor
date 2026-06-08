@@ -7,16 +7,22 @@ dotenv.config();
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://thelumia-danang.vercel.app",
+  "https://thelumia-danang.vn",
+  "https://www.thelumia-danang.vn",
+  ...(process.env.CORS_ORIGINS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
+];
+
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://thelumia-danang.vercel.app/",
-      "https://thelumia-danang.vn",
-      "https://www.thelumia-danang.vn",
-    ],
+    origin: allowedOrigins,
     credentials: true,
-    methods: ["POST", "GET", "PUT", "DELETE", "PATCH"],
+    methods: ["POST", "GET", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
