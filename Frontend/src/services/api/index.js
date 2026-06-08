@@ -1,6 +1,5 @@
-import axios from "axios"
-import toast from "react-hot-toast"
-import { refreshToken } from "./auth";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const apiInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -23,37 +22,17 @@ apiInstance.interceptors.request.use(
   },
   (error) => {
     return Promise.reject(error);
-  }
+  },
 );
 
 apiInstance.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    const originalRequest = error.config;
+  (response) => response,
+  (error) => {
     console.error(error);
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
-      try {
-        const res = await refreshToken();
-        const parseUserInfo = JSON.parse(localStorage.getItem("user"));
-        const token = res?.data?.data?.accessToken
-        localStorage.setItem(
-          "user",
-          JSON.stringify({ ...parseUserInfo, accessToken: token })
-        );
-        originalRequest.headers.Authorization = `Bearer ${token}`;
-        return apiInstance(originalRequest);
-      } catch (err) {
-        localStorage.removeItem("user");
-        window.location.href = "/";
-        console.error(err);
-        toast.error(err.response.data.message);
-      }
-    }
+    const msg = error?.response?.data?.message;
+    if (msg) toast.error(msg);
     return Promise.reject(error);
-  }
+  },
 );
 
 export default apiInstance;

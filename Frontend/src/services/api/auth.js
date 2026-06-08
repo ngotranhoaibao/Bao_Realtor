@@ -1,14 +1,6 @@
-import api from "./index";
-
-export const googleLogin = async (idToken) => {
-  return await api.post("/auth/google", { idToken });
-};
-
+// Minimal auth stub to satisfy imports when auth is not implemented
+// The interceptor in `services/api/index.js` expects a `refreshToken` function.
 export const refreshToken = async () => {
-  return await api.post("/auth/refresh-token");
+  // No auth backend available — return a rejected promise so caller can handle it.
+  return Promise.reject(new Error("refreshToken not implemented"));
 };
-
-export const logOut = async () => {
-  return await api.post("/auth/logout");
-};
-
