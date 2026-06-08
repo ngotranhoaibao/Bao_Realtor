@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import contactRoute from "./routes/contact.route.js";
-import { verifyTransporter } from "./utils/email.js";
 dotenv.config();
 
 const app = express();
@@ -32,15 +31,6 @@ const startServer = async () => {
 
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
-  });
-
-  verifyTransporter().then((res) => {
-    if (res.ok) console.log("SMTP transporter verified");
-    else
-      console.warn(
-        "SMTP transporter verification failed:",
-        res.error?.message || res.error,
-      );
   });
 };
 
