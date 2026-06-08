@@ -22,10 +22,12 @@ app.use("/api/contact", contactRoute);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, async () => {
-  console.log(`Server running on port ${PORT}`);
-  
+const startServer = async () => {
   await connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
 
   verifyTransporter().then((res) => {
     if (res.ok) console.log("SMTP transporter verified");
@@ -35,4 +37,9 @@ app.listen(PORT, async () => {
         res.error?.message || res.error,
       );
   });
+};
+
+startServer().catch((err) => {
+  console.error("Failed to start server:", err.message || err);
+  process.exit(1);
 });

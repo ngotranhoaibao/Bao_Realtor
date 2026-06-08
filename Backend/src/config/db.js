@@ -5,18 +5,22 @@ dotenv.config();
 
 const connectDB = async () => {
   if (!process.env.MONGO_URL) {
-    console.log("MONGO_URL not set, skipping MongoDB connection");
-    return;
+    throw new Error("MONGO_URL is not configured.");
   }
 
   try {
-    await mongoose.connect(process.env.MONGO_URL);
+    mongoose.set("bufferCommands", false);
+
+    await mongoose.connect(process.env.MONGO_URL, {
+      serverSelectionTimeoutMS: 10000,
+      connectTimeoutMS: 10000,
+      socketTimeoutMS: 45000,
+    });
 
     console.log("MongoDB connected");
   } catch (err) {
     console.error("MongoDB connection failed:", err);
-
-    process.exit(1);
+    throw err;
   }
 };
 
