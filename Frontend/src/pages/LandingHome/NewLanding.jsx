@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; // ĐÃ THÊM: useEffect
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Table,
@@ -28,13 +28,29 @@ import {
   Heart,
   Gem,
   Award,
-  Phone,
-  Mail,
-  Clock,
 } from "lucide-react";
 
 const NewLanding = () => {
   const [isStickyOpen, setIsStickyOpen] = useState(false);
+  // ĐÃ THÊM: State kiểm soát trạng thái xuất hiện của nút bảng giá
+  const [showSticky, setShowSticky] = useState(false);
+
+  // ĐÃ THÊM: Đăng ký sự kiện scroll kiểm tra khoảng cách cuộn màn hình
+  useEffect(() => {
+    const handleScroll = () => {
+      // Khi lướt qua khỏi 400px (bắt đầu rời khỏi banner đầu tiên) thì hiển thị nút
+      if (window.scrollY > 400) {
+        setShowSticky(true);
+      } else {
+        setShowSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div
@@ -80,32 +96,44 @@ const NewLanding = () => {
             </div>
           </div>
 
-          <div className="absolute top-[32%] left-1/2 -translate-x-1/2 text-center space-y-5 max-w-6xl w-full px-4 pointer-events-auto">
-            <div className="inline-flex items-center gap-2 bg-amber-500 text-slate-950 px-5 py-1.5 rounded-full text-xs font-bold tracking-[0.2em] uppercase shadow-lg border border-amber-400">
+          {/* ========================================================================= */}
+          {/* KHỐI CHỮ TRUNG TÂM — THU GỌN VÀ TẠO KHOẢNG THỞ ĐỂ KHOE ẢNH DỰ ÁN */}
+          {/* ========================================================================= */}
+          <div className="absolute top-[35%] left-1/2 -translate-x-1/2 text-center space-y-5 max-w-4xl w-full px-6 py-8 pointer-events-auto bg-slate-950/45 backdrop-blur-[3px] rounded-[1.5rem] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
+            {/* Tag nhỏ trên cùng */}
+            <div className="inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 px-4 py-1 rounded-full text-[11px] font-bold tracking-[0.2em] uppercase border border-amber-500/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
               TRỰC TIẾP CHỦ ĐẦU TƯ — GIÁ TỐT NHẤT
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black font-title-luxury tracking-wide uppercase leading-tight py-2 bg-gradient-to-b from-white to-slate-200 bg-clip-text text-transparent whitespace-nowrap drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+            {/* Tên dự án */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-black font-title-luxury tracking-wide uppercase leading-tight bg-gradient-to-b from-white via-slate-100 to-slate-300 bg-clip-text text-transparent drop-shadow-[0_4px_12px_rgba(0,0,0,1)]">
               THE LUMIA ĐÀ NẴNG
             </h1>
 
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-amber-400 tracking-wider max-w-4xl mx-auto uppercase drop-shadow-[0_4px_15px_rgba(0,0,0,1)]">
+            {/* Slogan */}
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-amber-400 tracking-wider max-w-3xl mx-auto uppercase drop-shadow-[0_3px_8px_rgba(0,0,0,0.8)]">
               HỆ SINH THÁI DỊCH VỤ & THƯƠNG MẠI ĐẲNG CẤP
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-3 w-full mb-2 pointer-events-auto">
+          {/* ========================================================================= */}
+          {/* NÚT BẤM CTA ĐÁY BANNER — ĐẨY XUỐNG THẤP ĐỂ TÁCH BIỆT KHỎI KHỐI CHỮ */}
+          {/* ========================================================================= */}
+          <div className="absolute bottom-[6%] left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 w-full max-w-xs px-4 pointer-events-auto z-20">
             <Button
               onClick={() =>
                 document
                   .getElementById("chinh-sach-ban-hang")
                   .scrollIntoView({ behavior: "smooth" })
               }
-              className="bg-white/10 hover:bg-white text-white hover:text-slate-950 border-2 border-white font-bold uppercase tracking-[0.2em] text-xs px-10 py-7 rounded-full transition-all duration-300 shadow-2xl backdrop-blur-sm"
+              className="w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-950 font-black uppercase tracking-[0.2em] text-xs py-6 rounded-full transition-all duration-300 shadow-[0_12px_24px_rgba(245,158,11,0.35)] border border-amber-300/40 hover:scale-105 active:scale-98"
             >
               XEM CHÍNH SÁCH ƯU ĐÃI
             </Button>
-            <ChevronDown className="h-7 w-7 text-amber-400 animate-bounce mt-3 drop-shadow-md" />
+
+            {/* Đổi mũi tên sang màu trắng để nổi bật trên nền tối bên dưới, kích thích lướt xuống */}
+            <ChevronDown className="h-6 w-6 text-white animate-bounce drop-shadow-md" />
           </div>
         </div>
 
@@ -929,9 +957,15 @@ const NewLanding = () => {
       </section>
 
       {/* ========================================================================= */}
-      {/* POPUP FLOATING STICKY BUTTON — GIỐNG HỆT ẢNH MẪU (BẢNG GIÁ + CHÍNH SÁCH) */}
+      {/* POPUP FLOATING STICKY BUTTON — ĐÃ FIX: Chỉ hiển thị khi scroll xuống qua Banner */}
       {/* ========================================================================= */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto">
+      <div
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto transition-all duration-500 ease-in-out ${
+          showSticky
+            ? "opacity-100 translate-y-0 scale-100 visible"
+            : "opacity-0 translate-y-10 scale-95 invisible pointer-events-none"
+        }`}
+      >
         <Dialog open={isStickyOpen} onOpenChange={setIsStickyOpen}>
           <DialogTrigger asChild>
             <button className="flex items-center gap-2.5 bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 hover:from-amber-200 hover:to-amber-300 text-amber-950 font-black text-xs md:text-sm tracking-wider uppercase px-6 py-3.5 rounded-full shadow-[0_10px_30px_rgba(0,0,0,0.3)] border-2 border-white/60 backdrop-blur-sm transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 animate-bounce [animation-duration:3s]">
@@ -943,9 +977,9 @@ const NewLanding = () => {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="3"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path d="M12 20h9" />
                   <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
@@ -967,6 +1001,7 @@ const NewLanding = () => {
           </DialogContent>
         </Dialog>
       </div>
+
       <ZaloIcon />
       <PhoneIcon />
       <ScrollUp />

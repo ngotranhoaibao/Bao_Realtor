@@ -49,12 +49,10 @@ export default function Footer() {
   return (
     <footer
       id="lien-he"
-      className="bg-slate-950 text-white py-16 font-sans antialiased border-t border-white/5"
+      className="bg-slate-950 text-white py-16 font-sans antialiased border-t border-white/5 w-full"
     >
-      <div className="container mx-auto px-4 max-w-6xl space-y-12">
-        {/* ========================================================================= */}
-        {/* 1. KHỐI FORM ĐĂNG KÝ CHUẨN ĐỊNH DẠNG Ô MÀU TRẮNG */}
-        {/* ========================================================================= */}
+      {/* KHỐI 1: Chỉ bọc riêng Form đăng ký để giữ form nằm gọn gàng ở giữa */}
+      <div className="container mx-auto px-4 max-w-6xl mb-16">
         <div className="w-full max-w-4xl mx-auto">
           <Card className="bg-slate-900 border border-white/10 text-white p-6 md:p-8 rounded-3xl shadow-2xl">
             <CardHeader className="p-0 pb-6 text-center space-y-2">
@@ -63,13 +61,12 @@ export default function Footer() {
               </CardTitle>
               <CardDescription className="text-slate-400 text-xs md:text-sm font-medium">
                 (Bảng giá gốc, chính sách thanh toán, ưu đãi chiết khấu, vay vốn
-                lãi suất 0%, tham quan nhà mẫu và tư vấn chuyên sâu)
+                lại suất 0%, tham quan nhà mẫu và tư vấn chuyên sâu)
               </CardDescription>
             </CardHeader>
 
             <CardContent className="p-0">
               <form className="space-y-4" onSubmit={handleFooterSubmit}>
-                {/* Dòng 1: Họ tên và Số điện thoại chia 2 cột */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label
@@ -106,7 +103,6 @@ export default function Footer() {
                   </div>
                 </div>
 
-                {/* Dòng 2: Thay thế ô Email cũ bằng ô Nội dung thêm */}
                 <div className="space-y-1.5">
                   <Label
                     htmlFor="footer-message"
@@ -136,60 +132,85 @@ export default function Footer() {
             </CardContent>
           </Card>
         </div>
+      </div>
 
-        {/* ========================================================================= */}
-        {/* 2. KHỐI THÔNG TIN VỀ CHÚNG TÔI & LIÊN HỆ CHÍNH THỨC */}
-        {/* ========================================================================= */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 border-t border-white/10 pt-12">
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold text-amber-500 uppercase tracking-widest border-l-4 border-amber-500 pl-3">
+      {/* ========================================================================= */}
+      {/* 2. KHỐI THÔNG TIN VỀ CHÚNG TÔI & LIÊN HỆ — FIX TRÀN VIỀN ĐẸP, KHÔNG LỖI CO CHỮ */}
+      {/* ========================================================================= */}
+      {/* Sử dụng px-6 md:px-16 để tạo khoảng hở tinh tế với hai bên cạnh màn hình */}
+      <div className="w-full px-6 md:px-16 border-t border-white/10 pt-16 mt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-start w-full">
+          {/* CỘT TRÁI: VỀ CHÚNG TÔI */}
+          <div className="space-y-5 w-full">
+            <h3 className="text-base md:text-lg font-bold text-amber-500 uppercase tracking-[0.2em] border-l-4 border-amber-500 pl-4 leading-none text-left">
               VỀ CHÚNG TÔI
             </h3>
-            <p className="text-slate-300 text-sm md:text-base leading-relaxed text-justify">
-              <strong className="text-white">thelumiadanang</strong> là trang
-              thông tin chính thức đăng tải các thông tin về quy hoạch, quy mô,
-              giá bán và các chính sách bán hàng dự án The Lumia Đà Nẵng. Chúng
-              xin cam kết cung cấp bảng giá gốc và hỗ trợ mọi thủ tục đặt mua
-              trực tiếp từ Chủ đầu tư Công ty Cổ phần Đầu tư Sài Gòn – Đà Nẵng
-              (SDN).
+            <p className="text-slate-400 text-sm md:text-base leading-relaxed text-justify font-medium">
+              <strong className="text-white font-semibold">
+                thelumiadanang
+              </strong>{" "}
+              là trang thông tin chính thức đăng tải các thông tin về quy hoạch,
+              quy mô, giá bán và các chính sách bán hàng dự án The Lumia Đà
+              Nẵng. Chúng tôi xin cam kết cung cấp bảng giá gốc và hỗ trợ mọi
+              thủ tục đặt mua trực tiếp từ Chủ đầu tư Công ty Cổ phần Đầu tư Sài
+              Gòn – Đà Nẵng (SDN).
             </p>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-lg font-bold text-amber-500 uppercase tracking-widest border-l-4 border-amber-500 pl-3">
-              LIÊN HỆ
+          {/* CỘT PHẢI: LIÊN HỆ CHÍNH THỨC (Đã fix chia đôi 50/50 phẳng, text trải rộng thoải mái) */}
+          <div className="space-y-5 w-full">
+            <h3 className="text-base md:text-lg font-bold text-amber-500 uppercase tracking-[0.2em] border-l-4 border-amber-500 pl-4 leading-none text-left">
+              LIÊN HỆ CHÍNH THỨC
             </h3>
-            <ul className="space-y-3.5 text-slate-300 text-sm md:text-base">
-              <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
-                <span>606 đường 2 tháng 9, Đà Nẵng, Việt Nam</span>
+
+            <ul className="text-slate-300 text-sm md:text-base w-full divide-y divide-white/5 font-medium text-left">
+              {/* Địa chỉ */}
+              <li className="py-4 flex items-center justify-between gap-4 w-full group">
+                <div className="flex items-center gap-3 shrink-0">
+                  <MapPin className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold text-white">Địa chỉ</span>
+                </div>
+                <span className="text-slate-300 text-right group-hover:text-amber-400 transition-colors duration-300">
+                  606 đường 2 tháng 9, Q. Hải Châu, TP. Đà Nẵng, Việt Nam
+                </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-amber-500 shrink-0" />
+
+              {/* Hotline */}
+              <li className="py-4 flex items-center justify-between gap-4 w-full group">
+                <div className="flex items-center gap-3 shrink-0">
+                  <Phone className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold text-white">Hotline</span>
+                </div>
                 <a
                   href="tel:0763553105"
-                  className="hover:text-amber-400 transition-colors"
+                  className="text-slate-300 hover:text-amber-400 text-right tracking-wider transition-colors duration-300"
                 >
                   076 355 3105
                 </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Globe className="h-5 w-5 text-amber-500 shrink-0" />
+
+              {/* Website */}
+              <li className="py-4 flex items-center justify-between gap-4 w-full group">
+                <div className="flex items-center gap-3 shrink-0">
+                  <Globe className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
+                  <span className="font-semibold text-white">Website</span>
+                </div>
                 <a
-                  href="https://thelumia-danang.vn/"
+                  href="https://thelumia-danang.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-amber-400 transition-colors"
+                  className="text-slate-300 hover:text-amber-400 text-right break-all transition-colors duration-300"
                 >
-                  https://thelumia-danang.vn/
+                  https://thelumia-danang.vercel.app/
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 text-center text-xs text-slate-500 tracking-wider">
-          <p>© Copyright 2026 The Lumia Da Nang. All rights reserved.</p>
+        {/* Bản quyền dưới chân trang */}
+        <div className="border-t border-white/5 mt-16 pt-8 text-center text-xs text-slate-600 tracking-widest w-full font-medium">
+          <p>© COPYRIGHT 2026 THE LUMIA DA NANG. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>
