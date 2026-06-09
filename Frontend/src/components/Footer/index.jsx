@@ -147,7 +147,7 @@ export default function Footer() {
             </h3>
             <p className="text-slate-400 text-sm md:text-base leading-relaxed text-justify font-medium">
               <strong className="text-white font-semibold">
-                thelumiadanang
+                thelumia.asia
               </strong>{" "}
               là trang thông tin chính thức đăng tải các thông tin về quy hoạch,
               quy mô, giá bán và các chính sách bán hàng dự án The Lumia Đà
@@ -196,12 +196,12 @@ export default function Footer() {
                   <span className="font-semibold text-white">Website</span>
                 </div>
                 <a
-                  href="https://thelumia-danang.vercel.app/"
+                  href="https://thelumia.asia/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-slate-300 hover:text-amber-400 text-right break-all transition-colors duration-300"
                 >
-                  https://thelumia-danang.vercel.app/
+                  https://thelumia.asia/
                 </a>
               </li>
             </ul>
