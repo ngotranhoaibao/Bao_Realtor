@@ -439,4 +439,104 @@ export const newsArticles = [
       },
     ],
   },
+  {
+    slug: "quy-hoach-tay-bac-da-nang-den-nam-2030",
+    tag: "Quy hoạch 2030",
+    category: "Hạ tầng",
+    title:
+      "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030: Động lực tăng trưởng mới của thành phố",
+    seoTitle:
+      "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030: động lực tăng trưởng mới",
+    seoDescription:
+      "Tìm hiểu quy hoạch Tây Bắc Đà Nẵng đến năm 2030, vai trò Cảng Liên Chiểu, Khu thương mại tự do Đà Nẵng, hạ tầng giao thông và tác động đến bất động sản Liên Chiểu.",
+    mainKeyword: "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030",
+    keywords: [
+      "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030",
+      "Tây Bắc Đà Nẵng",
+      "Cảng Liên Chiểu",
+      "Khu thương mại tự do Đà Nẵng",
+      "bất động sản Liên Chiểu",
+      "The Lumia Đà Nẵng",
+    ],
+    summary:
+      "Tây Bắc Đà Nẵng đang được định hướng trở thành cực tăng trưởng mới với vai trò logistics, công nghiệp công nghệ cao và thương mại quốc tế.",
+    excerpt:
+      "Trong chiến lược phát triển đô thị của Đà Nẵng, khu vực Tây Bắc đang được định hướng trở thành cực tăng trưởng mới với hàng loạt dự án hạ tầng trọng điểm.",
+    image: "/quy-hoach-du-an-the-lumia-da-nang.jpg",
+    gallery: [
+      "/cang-lien-chieu.jpg",
+      "/KCNC-Da-Nang-860x588.jpg",
+      "/vi-tri-the-lumia-da-nang.jpg",
+    ],
+    bullets: [
+      "Tây Bắc Đà Nẵng được định hướng thành trung tâm logistics, công nghiệp công nghệ cao và thương mại quốc tế.",
+      "Cảng Liên Chiểu, FTZ và các tuyến giao thông liên vùng tạo lực đẩy cho khu vực.",
+      "The Lumia Đà Nẵng có lợi thế khi nằm gần các động lực tăng trưởng mới của thành phố.",
+    ],
+    sections: [
+      {
+        heading: "Tây Bắc Đà Nẵng đang thay đổi như thế nào?",
+        content: [
+          "Trong nhiều năm, sự phát triển của Đà Nẵng tập trung chủ yếu về phía Đông và Nam thành phố. Tuy nhiên, định hướng quy hoạch đến năm 2030 đã mở ra chương mới cho khu vực Tây Bắc, đặc biệt là khu vực Liên Chiểu.",
+          "Với lợi thế quỹ đất lớn, vị trí cửa ngõ giao thương của miền Trung và khả năng kết nối trực tiếp với các tuyến vận tải quốc tế, Tây Bắc Đà Nẵng được kỳ vọng trở thành trung tâm kinh tế mới của thành phố.",
+          "Sự xuất hiện của các dự án hạ tầng quy mô lớn không chỉ thay đổi diện mạo đô thị mà còn tạo động lực thu hút dân cư, doanh nghiệp và nhà đầu tư.",
+        ],
+      },
+      {
+        heading: "Cảng Liên Chiểu - Hạt nhân của chiến lược phát triển",
+        content: [
+          "Một trong những dự án quan trọng nhất tại Tây Bắc Đà Nẵng là Cảng Liên Chiểu. Năm 2026, Đà Nẵng chính thức khởi động dự án đầu tư tổng thể bến cảng container Liên Chiểu với tổng vốn đầu tư hơn 2 tỷ USD.",
+          "Dự án được định hướng trở thành trung tâm trung chuyển hàng hóa quốc tế của khu vực miền Trung và hành lang kinh tế Đông - Tây. Theo quy hoạch, cảng có quy mô hơn 170 ha, công suất thiết kế hàng triệu TEU mỗi năm và được phát triển theo mô hình cảng xanh, cảng thông minh.",
+          "Khi đi vào hoạt động, Cảng Liên Chiểu sẽ góp phần giảm tải cho Cảng Tiên Sa, thúc đẩy logistics và xuất nhập khẩu, thu hút doanh nghiệp sản xuất, dịch vụ và tạo thêm hàng chục nghìn việc làm.",
+        ],
+      },
+      {
+        heading: "Khu thương mại tự do tạo cú hích mới",
+        content: [
+          "Bên cạnh cảng biển, Khu thương mại tự do Đà Nẵng đang được xem là một trong những động lực tăng trưởng quan trọng của thành phố. Theo định hướng quy hoạch, các khu chức năng của FTZ được nghiên cứu tại nhiều vị trí thuộc khu vực Liên Chiểu và Hòa Vang.",
+          "Mô hình này được kỳ vọng sẽ thu hút vốn đầu tư nước ngoài, gia tăng hoạt động xuất nhập khẩu, tạo môi trường thuận lợi cho doanh nghiệp và hình thành cộng đồng chuyên gia, lao động chất lượng cao.",
+          "Kinh nghiệm tại nhiều quốc gia cho thấy những khu vực xung quanh FTZ thường hưởng lợi mạnh về hạ tầng và nhu cầu bất động sản.",
+        ],
+      },
+      {
+        heading: "Hạ tầng giao thông ngày càng hoàn thiện",
+        content: [
+          "Song song với cảng biển và FTZ, khu vực Tây Bắc Đà Nẵng đang được đầu tư mạnh về giao thông. Các tuyến đường kết nối cảng, đường vành đai, cao tốc và mạng lưới giao thông nội đô đang được nâng cấp.",
+          "Việc hoàn thiện hạ tầng giúp rút ngắn thời gian di chuyển, tăng giá trị bất động sản, thu hút doanh nghiệp đầu tư và mở rộng không gian phát triển đô thị.",
+        ],
+      },
+      {
+        heading: "Tác động đến thị trường bất động sản",
+        content: [
+          "Lịch sử phát triển của nhiều thành phố lớn cho thấy bất động sản thường tăng trưởng cùng với các dự án hạ tầng trọng điểm. Tại Tây Bắc Đà Nẵng, sự xuất hiện của Cảng Liên Chiểu, Khu thương mại tự do và hệ thống giao thông đồng bộ đang tạo ra kỳ vọng lớn cho thị trường.",
+          "Nhu cầu nhà ở của chuyên gia, kỹ sư, lao động chất lượng cao và cộng đồng doanh nghiệp được dự báo sẽ tăng mạnh trong những năm tới. Đây cũng là lý do nhiều nhà đầu tư đang chuyển sự quan tâm từ khu vực trung tâm sang Tây Bắc thành phố.",
+        ],
+      },
+      {
+        heading: "The Lumia Đà Nẵng hưởng lợi gì từ quy hoạch?",
+        content: [
+          "Là một trong những dự án nằm tại khu vực Tây Bắc, The Lumia Đà Nẵng được đánh giá có nhiều lợi thế từ quá trình phát triển hạ tầng. Dự án nằm gần các động lực tăng trưởng mới như Cảng Liên Chiểu, Khu công nghệ cao và các tuyến giao thông chiến lược.",
+          "Khi khu vực phát triển mạnh về logistics, công nghiệp và thương mại quốc tế, nhu cầu nhà ở, kinh doanh và dịch vụ cũng sẽ gia tăng, tạo nền tảng cho sự phát triển dài hạn của dự án.",
+          "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030 không chỉ là kế hoạch mở rộng đô thị mà còn là chiến lược phát triển kinh tế dài hạn của thành phố. Với nhà đầu tư và người mua ở thực, việc theo dõi sát quá trình phát triển khu vực sẽ giúp nắm bắt những cơ hội giá trị trong giai đoạn chuyển mình.",
+        ],
+      },
+    ],
+    faqs: [
+      {
+        question: "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030 tập trung vào những gì?",
+        answer:
+          "Quy hoạch tập trung vào logistics, cảng biển, công nghiệp công nghệ cao, thương mại quốc tế, hạ tầng giao thông và mở rộng không gian đô thị về khu vực Liên Chiểu, Hòa Vang.",
+      },
+      {
+        question: "Cảng Liên Chiểu ảnh hưởng thế nào đến bất động sản Liên Chiểu?",
+        answer:
+          "Cảng Liên Chiểu có thể thúc đẩy nhu cầu logistics, sản xuất, dịch vụ, nhà ở chuyên gia và mặt bằng kinh doanh, qua đó tạo thêm động lực cho thị trường bất động sản Liên Chiểu.",
+      },
+      {
+        question: "The Lumia Đà Nẵng có lợi thế gì trong quy hoạch Tây Bắc?",
+        answer:
+          "The Lumia Đà Nẵng nằm trong khu vực Tây Bắc, gần các động lực tăng trưởng như Cảng Liên Chiểu, Khu công nghệ cao và các tuyến giao thông chiến lược, nên có cơ sở hưởng lợi từ quá trình phát triển dài hạn của khu vực.",
+      },
+    ],
+  },
 ];
