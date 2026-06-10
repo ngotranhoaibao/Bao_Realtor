@@ -31,10 +31,10 @@ import {
   Award,
 } from "lucide-react";
 
-const seoNewsCards = [
+const featuredNewsCards = [
   {
     slug: "the-lumia-diem-sang-dau-tu-tay-bac-da-nang",
-    tag: "Tin SEO",
+    tag: "Tin thị trường",
     title: "The Lumia Đà Nẵng – điểm sáng đầu tư tại Tây Bắc Đà Nẵng",
     summary:
       "Dự án The Lumia được định vị như phân khu thương mại – sinh thái đón sóng hạ tầng Cảng Liên Chiểu, mang lại tiềm năng tăng giá và cho thuê dài hạn cho nhà đầu tư.",

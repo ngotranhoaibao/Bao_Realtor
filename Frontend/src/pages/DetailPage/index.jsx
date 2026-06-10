@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
+  ArrowRight,
   Newspaper,
   Sparkles,
   TrendingUp,
@@ -12,6 +13,114 @@ import { newsArticles } from "@/data/newsArticles";
 export default function DetailPage() {
   const { slug } = useParams();
   const article = newsArticles.find((item) => item.slug === slug);
+
+  useEffect(() => {
+    if (!article) return;
+
+    const articleUrl = `https://thelumia.asia/tin-tuc/${article.slug}`;
+    const articleTitle = `${article.seoTitle || article.title} | The Lumia Đà Nẵng`;
+    const articleDescription = article.seoDescription || article.summary;
+    const articleImage = `https://thelumia.asia${article.image}`;
+    const keywordContent = article.keywords?.join(", ");
+
+    document.title = articleTitle;
+
+    const setMeta = (selector, attribute, value) => {
+      let element = document.querySelector(selector);
+      if (!element) {
+        element = document.createElement("meta");
+        const [name, content] = attribute;
+        element.setAttribute(name, content);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", value);
+    };
+
+    setMeta(
+      'meta[name="description"]',
+      ["name", "description"],
+      articleDescription
+    );
+    if (keywordContent) {
+      setMeta('meta[name="keywords"]', ["name", "keywords"], keywordContent);
+    }
+    setMeta('meta[property="og:type"]', ["property", "og:type"], "article");
+    setMeta('meta[property="og:url"]', ["property", "og:url"], articleUrl);
+    setMeta('meta[property="og:title"]', ["property", "og:title"], articleTitle);
+    setMeta(
+      'meta[property="og:description"]',
+      ["property", "og:description"],
+      articleDescription
+    );
+    setMeta('meta[property="og:image"]', ["property", "og:image"], articleImage);
+    setMeta('meta[name="twitter:title"]', ["name", "twitter:title"], articleTitle);
+    setMeta(
+      'meta[name="twitter:description"]',
+      ["name", "twitter:description"],
+      articleDescription
+    );
+    setMeta('meta[name="twitter:image"]', ["name", "twitter:image"], articleImage);
+
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute("href", articleUrl);
+
+    let articleSchema = document.querySelector("#article-schema");
+    if (!articleSchema) {
+      articleSchema = document.createElement("script");
+      articleSchema.id = "article-schema";
+      articleSchema.type = "application/ld+json";
+      document.head.appendChild(articleSchema);
+    }
+    articleSchema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          headline: article.title,
+          description: articleDescription,
+          image: [articleImage],
+          mainEntityOfPage: articleUrl,
+          author: {
+            "@type": "Organization",
+            name: "The Lumia Đà Nẵng",
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "The Lumia Đà Nẵng",
+            logo: {
+              "@type": "ImageObject",
+              url: "https://thelumia.asia/the-lumia-da-nang-logo-white.png",
+            },
+          },
+          datePublished: "2026-06-10",
+          dateModified: "2026-06-11",
+          keywords: article.keywords,
+          articleSection: article.category,
+          inLanguage: "vi-VN",
+        },
+        ...(article.faqs?.length
+          ? [
+              {
+                "@type": "FAQPage",
+                mainEntity: article.faqs.map((faq) => ({
+                  "@type": "Question",
+                  name: faq.question,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: faq.answer,
+                  },
+                })),
+              },
+            ]
+          : []),
+      ],
+    });
+  }, [article]);
 
   if (!article) {
     return (
@@ -66,12 +175,22 @@ export default function DetailPage() {
                   {article.category}
                 </span>
                 <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
-                  Tin tức SEO
-                </span>
-                <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1">
                   Đầu tư bền vững
                 </span>
               </div>
+
+              {article.keywords?.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {article.keywords.slice(0, 6).map((keyword) => (
+                    <span
+                      key={keyword}
+                      className="rounded-full bg-amber-50 px-3 py-1 text-xs font-medium text-amber-800 ring-1 ring-amber-100"
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
                 <span className="inline-flex items-center gap-2">
@@ -120,6 +239,67 @@ export default function DetailPage() {
                 />
               ))}
             </div>
+          </div>
+
+          <div className="grid gap-8 border-t border-slate-200 p-6 md:p-10 lg:grid-cols-[minmax(0,1fr)_320px]">
+            <div className="space-y-8">
+              <p className="text-lg leading-relaxed text-slate-700">
+                {article.excerpt}
+              </p>
+
+              {article.sections.map((section) => (
+                <section key={section.heading} className="space-y-3">
+                  <h2 className="text-2xl font-bold leading-snug text-slate-900">
+                    {section.heading}
+                  </h2>
+                  {(Array.isArray(section.content)
+                    ? section.content
+                    : [section.content]
+                  ).map((paragraph) => (
+                    <p
+                      key={paragraph}
+                      className="text-base leading-8 text-slate-700 md:text-lg"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </section>
+              ))}
+
+              {article.faqs?.length > 0 && (
+                <section className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                  <h2 className="text-2xl font-bold text-slate-900">
+                    Câu hỏi thường gặp về {article.title}
+                  </h2>
+                  {article.faqs.map((faq) => (
+                    <div key={faq.question} className="space-y-2">
+                      <h3 className="text-lg font-semibold text-slate-900">
+                        {faq.question}
+                      </h3>
+                      <p className="text-base leading-7 text-slate-700">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </section>
+              )}
+            </div>
+
+            <aside className="h-fit rounded-2xl border border-slate-200 bg-slate-50 p-5">
+              <h2 className="text-lg font-bold text-slate-900">
+                Cần tư vấn chọn sản phẩm phù hợp?
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600">
+                Nhận phân tích vị trí, công năng khai thác và phương án dòng
+                tiền theo từng nhu cầu đầu tư tại The Lumia Đà Nẵng.
+              </p>
+              <Link
+                to="/#lien-he"
+                className="mt-5 inline-flex items-center gap-2 rounded-full bg-amber-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-amber-800"
+              >
+                Liên hệ tư vấn <ArrowRight className="h-4 w-4" />
+              </Link>
+            </aside>
           </div>
         </article>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -24,35 +24,48 @@ const navItems = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (targetId, attempt = 0) => {
+    const targetElement = document.querySelector(targetId);
+
+    if (!targetElement) {
+      if (attempt < 12) {
+        window.setTimeout(() => scrollToSection(targetId, attempt + 1), 80);
+      }
+      return;
+    }
+
+    window.history.replaceState(null, "", targetId);
+
+    const headerOffset = 80;
+    const elementPosition = targetElement.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  };
 
   const handleScroll = (e, href) => {
     e.preventDefault();
 
     if (href.startsWith("/")) {
-      e.preventDefault();
       navigate(href);
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
       return;
     }
 
     const targetId = href.startsWith("#") ? href : `#${href}`;
-    const targetElement = document.querySelector(targetId);
 
-    if (targetElement) {
-      window.history.pushState(null, "", targetId);
-
-      const headerOffset = 80;
-      const elementPosition = targetElement.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    } else {
-      window.history.pushState(null, "", targetId);
+    if (location.pathname !== "/") {
+      navigate(`/${targetId}`);
+      window.setTimeout(() => scrollToSection(targetId), 120);
+      return;
     }
+
+    scrollToSection(targetId);
   };
 
   return (

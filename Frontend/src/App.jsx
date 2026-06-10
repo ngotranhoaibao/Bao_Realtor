@@ -7,11 +7,34 @@ import DetailPage from "./pages/DetailPage/index.jsx";
 import { Toaster } from "react-hot-toast";
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { hash, pathname } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      const scrollToHash = (attempt = 0) => {
+        const targetElement = document.querySelector(hash);
+
+        if (!targetElement) {
+          if (attempt < 12) {
+            window.setTimeout(() => scrollToHash(attempt + 1), 80);
+          }
+          return;
+        }
+
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({ top: offsetPosition, left: 0, behavior: "smooth" });
+      };
+
+      window.setTimeout(() => scrollToHash(), 120);
+      return;
+    }
+
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [pathname]);
+  }, [hash, pathname]);
 
   return null;
 }
