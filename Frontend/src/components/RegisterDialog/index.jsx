@@ -93,7 +93,7 @@ const RegisterDialog = ({ onSuccess }) => {
             id="dialog-message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Nhập nội dung Anh/chị đang cần tư vấn...)"
+            placeholder="Nhập nội dung Anh/chị đang cần tư vấn..."
             className="bg-slate-50 border border-slate-200 text-slate-900 rounded-xl text-sm focus-visible:ring-red-500 min-h-[110px] px-4 py-3 font-medium shadow-inner"
           />
         </div>
