@@ -23,9 +23,14 @@ const navItems = [
 const Header = () => {
   const handleScroll = (e, href) => {
     e.preventDefault();
-    const targetElement = document.querySelector(href);
+
+    const targetId = href.startsWith("#") ? href : `#${href}`;
+    const targetElement = document.querySelector(targetId);
+
     if (targetElement) {
-      const headerOffset = 80; // Bằng chiều cao h-20 của Header cố định
+      window.history.pushState(null, "", targetId);
+
+      const headerOffset = 80;
       const elementPosition = targetElement.getBoundingClientRect().top;
       const offsetPosition =
         elementPosition + window.pageYOffset - headerOffset;
@@ -34,6 +39,8 @@ const Header = () => {
         top: offsetPosition,
         behavior: "smooth",
       });
+    } else {
+      window.history.pushState(null, "", targetId);
     }
   };
 
