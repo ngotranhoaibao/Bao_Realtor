@@ -9,11 +9,8 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://thelumia-danang.vercel.app",
   "https://thelumia.asia",
   "https://www.thelumia.asia",
-  "https://thelumia-danang.vn",
-  "https://www.thelumia-danang.vn",
   ...(process.env.CORS_ORIGINS || "")
     .split(",")
     .map((origin) => origin.trim())

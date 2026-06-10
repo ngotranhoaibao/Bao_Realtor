@@ -72,7 +72,7 @@ const NewLanding = () => {
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat animate-fade-in"
           style={{
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.75)), url('https://thelumia-danang.vn/wp-content/uploads/2025/07/the-lumia-da-nang-background.jpg')`,
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.25), rgba(0,0,0,0.75)), url('/the-lumia-da-nang.jpg')`,
           }}
         />
 
@@ -332,7 +332,7 @@ const NewLanding = () => {
           <div className="space-y-6 flex flex-col justify-between">
             <div className="overflow-hidden rounded-2xl shadow-md border border-slate-200 aspect-[16/10]">
               <img
-                src="https://thelumia-danang.vn/wp-content/uploads/2025/07/the-lumia-da-nang.jpg"
+                src="/the-lumia-da-nang.jpg"
                 alt="Phối cảnh tổng thể dự án"
                 className="w-full h-full object-cover hover:scale-105 transition duration-500"
               />
@@ -340,14 +340,14 @@ const NewLanding = () => {
             <div className="grid grid-cols-2 gap-4">
               <div className="overflow-hidden rounded-xl border aspect-video shadow-sm">
                 <img
-                  src="https://thelumia-danang.vn/wp-content/uploads/2025/07/quy-hoach-du-an-the-lumia-da-nang.jpg"
+                  src="/quy-hoach-du-an-the-lumia-da-nang.jpg"
                   alt="Bản đồ quy hoạch"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="overflow-hidden rounded-xl border aspect-video shadow-sm">
                 <img
-                  src="https://thelumia-danang.vn/wp-content/uploads/2025/07/canh-quan-tien-ich-the-lumia-da-nang.jpg"
+                  src="/canh-quan-tien-ich-the-lumia-da-nang.jpg"
                   alt="Cảnh quan công viên"
                   className="w-full h-full object-cover"
                 />
@@ -463,14 +463,14 @@ const NewLanding = () => {
           <div className="space-y-4 w-full flex flex-col justify-between">
             <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
               <img
-                src="https://thelumia-danang.vn/wp-content/uploads/2025/07/vi-tri-the-lumia-da-nang.jpg"
+                src="/vi-tri-the-lumia-da-nang.jpg"
                 alt="Bản đồ liên kết vùng dự án The Lumia"
                 className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
               />
             </div>
             <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
               <img
-                src="https://thelumiadanang.com.vn/wp-content/uploads/2025/04/The-Lumia-Da-Nang-Quan-Lien-Chieu-1400x788.jpg"
+                src="/The-Lumia-Da-Nang-Quan-Lien-Chieu-1400x788.jpg"
                 alt="Hạ tầng Quận Liên Chiểu Đà Nẵng"
                 className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
               />
@@ -501,7 +501,7 @@ const NewLanding = () => {
 
           <div className="rounded-3xl overflow-hidden shadow-md border bg-white p-2">
             <img
-              src="https://thelumia-danang.vn/wp-content/uploads/2025/07/tong-mat-bang-the-lumia-da-nang.jpg"
+              src="/tong-mat-bang-the-lumia-da-nang.jpg"
               alt="Mặt bằng chi tiết phân lô"
               className="w-full h-auto rounded-2xl"
             />
@@ -601,7 +601,7 @@ const NewLanding = () => {
                 loading="lazy"
                 decoding="async"
                 className="w-full h-auto object-contain mx-auto"
-                src="https://thelumiadanang.com.vn/wp-content/uploads/2025/09/CIRCLE-838x800.png"
+                src="/CIRCLE-838x800.png"
               />
             </div>
           </div>
@@ -754,7 +754,7 @@ const NewLanding = () => {
               >
                 <div className="rounded-2xl overflow-hidden border border-slate-800 mb-4 aspect-video shadow-md">
                   <img
-                    src="https://thelumia-danang.vn/wp-content/uploads/2025/07/tong-mat-bang-the-lumia-da-nang.jpg"
+                    src="/tong-mat-bang-the-lumia-da-nang.jpg"
                     alt="Tổng mặt bằng dự án"
                     className="w-full h-full object-cover"
                   />
@@ -774,7 +774,7 @@ const NewLanding = () => {
               >
                 <div className="rounded-2xl overflow-hidden border border-slate-800 mb-4 aspect-video shadow-md">
                   <img
-                    src="https://thelumia-danang.vn/wp-content/uploads/2025/07/cac-phan-khu-giai-doan-1-the-lumia-da-nang.jpg"
+                    src="/cac-phan-khu-giai-doan-1-the-lumia-da-nang.jpg"
                     alt="Mặt bằng phân khu"
                     className="w-full h-full object-cover"
                   />
@@ -797,7 +797,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/benh-vien-quoc-te-the-lumia-da-nang.jpg"
+                      src="/benh-vien-quoc-te-the-lumia-da-nang.jpg"
                       alt="Bệnh viện"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -810,7 +810,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/truong-hoc-quoc-te-the-lumia-da-nang.jpg"
+                      src="/truong-hoc-quoc-te-the-lumia-da-nang.jpg"
                       alt="Trường học"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -823,7 +823,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/trung-tam-thuong-mai-the-lumia-da-nang.jpg"
+                      src="/trung-tam-thuong-mai-the-lumia-da-nang.jpg"
                       alt="Trung tâm thương mại"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -836,7 +836,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/tuyen-pho-thuong-mai-the-lumia-da-nang.jpg"
+                      src="/tuyen-pho-thuong-mai-the-lumia-da-nang.jpg"
                       alt="Tuyến phố"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -849,7 +849,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/cong-vien-chu-de-the-lumia-da-nang.jpg"
+                      src="/cong-vien-chu-de-the-lumia-da-nang.jpg"
                       alt="Công viên"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -862,7 +862,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/ho-canh-quan-the-lumia-da-nang.jpg"
+                      src="/ho-canh-quan-the-lumia-da-nang.jpg"
                       alt="Hồ cảnh quan"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -875,7 +875,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/san-tap-golf-the-lumia-da-nang.jpg"
+                      src="/san-tap-golf-the-lumia-da-nang.jpg"
                       alt="Sân golf"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -888,7 +888,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/san-the-thao-the-lumia-da-nang.jpg"
+                      src="/san-the-thao-the-lumia-da-nang.jpg"
                       alt="Sân thê thao"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -901,7 +901,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/san-choi-tre-em-the-lumia-da-nang.jpg"
+                      src="/san-choi-tre-em-the-lumia-da-nang.jpg"
                       alt="Sân chơi"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -914,7 +914,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/rap-chieu-phim-ngoai-troi-the-lumia-da-nang.jpg"
+                      src="/rap-chieu-phim-ngoai-troi-the-lumia-da-nang.jpg"
                       alt="Rạp phim"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -927,7 +927,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/khu-cam-trai-the-lumia-da-nang.jpg"
+                      src="/khu-cam-trai-the-lumia-da-nang.jpg"
                       alt="Camping"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"
@@ -940,7 +940,7 @@ const NewLanding = () => {
                 <div className="space-y-2">
                   <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
                     <img
-                      src="https://thelumia-danang.vn/wp-content/uploads/2025/07/clubhouse-the-lumia-da-nang.jpg"
+                      src="/clubhouse-the-lumia-da-nang.jpg"
                       alt="Clubhouse"
                       loading="lazy"
                       className="w-full h-full object-cover hover:scale-105 transition duration-300"

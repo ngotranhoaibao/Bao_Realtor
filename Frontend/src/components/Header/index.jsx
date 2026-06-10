@@ -46,7 +46,7 @@ const Header = () => {
           className="flex items-center gap-2 shrink-0 transition-opacity hover:opacity-90 animate-fade-in"
         >
           <img
-            src="https://thelumia-danang.vn/wp-content/uploads/2025/07/the-lumia-da-nang-logo-white.png"
+            src="/the-lumia-da-nang-logo-white.png"
             alt="The Lumia Đà Nẵng Official Website"
             className="h-12 w-auto object-contain brightness-110 contrast-105"
           />
