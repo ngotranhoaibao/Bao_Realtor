@@ -87,7 +87,7 @@ const RegisterDialog = ({ onSuccess }) => {
 
         <div className="space-y-1.5">
           <Label htmlFor="dialog-message" className="text-xs font-bold uppercase tracking-wider text-slate-700">
-            Nội dung thêm
+            Nội dung cần tư vấn 
           </Label>
           <Textarea
             id="dialog-message"
