@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -12,17 +13,27 @@ import { Menu } from "lucide-react";
 
 // ĐÃ SẮP XẾP LẠI THỨ TỰ CHUẨN UX THEO DÒNG LƯỚT TRANG TỪ TRÊN XUỐNG DƯỚI
 const navItems = [
-  { name: "CHÍNH SÁCH", href: "#chinh-sach-ban-hang" }, // Đưa khối ưu đãi/booking lên đầu
-  { name: "GIỚI THIỆU", href: "#tong-quan" }, // Tổng quan dự án
-  { name: "VỊ TRÍ", href: "#vi-tri" }, // Vị trí kim cương Liên Chiểu
-  { name: "SẢN PHẨM", href: "#mat-bang" }, // Mặt bằng phân lô chi tiết
-  { name: "TIỆN ÍCH", href: "#tien-do" }, // Hệ sinh thái All-In-One
-  { name: "LIÊN HỆ", href: "#lien-he" }, // Form tư vấn cuối trang
+  { name: "GIỚI THIỆU", href: "#tong-quan" },
+  { name: "VỊ TRÍ", href: "#vi-tri" },
+  { name: "TIỆN ÍCH", href: "#tien-do" },
+  { name: "SẢN PHẨM", href: "#mat-bang" },
+  { name: "CHÍNH SÁCH", href: "#chinh-sach-ban-hang" },
+  { name: "TIN TỨC", href: "/tin-tuc" },
+  { name: "LIÊN HỆ", href: "#lien-he" },
 ];
 
 const Header = () => {
+  const navigate = useNavigate();
+
   const handleScroll = (e, href) => {
     e.preventDefault();
+
+    if (href.startsWith("/")) {
+      e.preventDefault();
+      navigate(href);
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      return;
+    }
 
     const targetId = href.startsWith("#") ? href : `#${href}`;
     const targetElement = document.querySelector(targetId);
