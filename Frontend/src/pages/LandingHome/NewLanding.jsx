@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { newsArticles } from "@/data/newsArticles";
 import {
   Table,
   TableBody,
@@ -29,41 +30,11 @@ import {
   Heart,
   Gem,
   Award,
+  ArrowRight,
+  Newspaper,
 } from "lucide-react";
 
-const featuredNewsCards = [
-  {
-    slug: "the-lumia-diem-sang-dau-tu-tay-bac-da-nang",
-    tag: "Tin thị trường",
-    title: "The Lumia Đà Nẵng – điểm sáng đầu tư tại Tây Bắc Đà Nẵng",
-    summary:
-      "Dự án The Lumia được định vị như phân khu thương mại – sinh thái đón sóng hạ tầng Cảng Liên Chiểu, mang lại tiềm năng tăng giá và cho thuê dài hạn cho nhà đầu tư.",
-  },
-  {
-    slug: "shophouse-4-tang-the-lumia-vua-o-vua-kinh-doanh",
-    tag: "Shophouse 4 tầng",
-    title:
-      "Shophouse 4 tầng tại The Lumia phù hợp mô hình vừa ở vừa kinh doanh",
-    summary:
-      "Với tầng 1–2 kinh doanh và tầng 3–4 ở, shophouse tại The Lumia tạo dòng tiền ổn định, dễ khai thác cho doanh nghiệp SME và nhà đầu tư cá nhân.",
-  },
-  {
-    slug: "the-lumia-huong-loi-ftz-cang-lien-chieu",
-    tag: "FTZ & Logistics",
-    title:
-      "The Lumia hưởng lợi từ trục hạ tầng FTZ, Cảng Liên Chiếu và tuyến kết nối mới",
-    summary:
-      "Sự phát triển của hạ tầng cảng, logistics và khu công nghệ tại khu vực Tây Bắc giúp giá trị bất động sản The Lumia có cơ sở tăng trưởng bền vững.",
-  },
-  {
-    slug: "khi-dau-tu-vao-du-an-the-lumia",
-    tag: "Phân tích chuyên sâu",
-    title:
-      "Khi đầu tư vào dự án The Lumia: phân tích chuyên sâu về dòng tiền và lãi vốn",
-    summary:
-      "Từ mô hình shophouse 4 tầng, tỷ suất sinh lời, rủi ro hạ tầng và chiến lược chọn vị trí, dự án The Lumia mở ra hướng đầu tư giá trị theo đúng chu kỳ tăng trưởng 2026–2028.",
-  },
-];
+const featuredNewsCards = newsArticles.slice(0, 4);
 
 const NewLanding = () => {
   const [isStickyOpen, setIsStickyOpen] = useState(false);
@@ -283,7 +254,65 @@ const NewLanding = () => {
         </section>
 
         {/* ========================================================================= */}
-        {/* 2. TỔNG QUAN DỰ ÁN */}
+        {/* 2. TIN TỨC THE LUMIA — XUẤT HIỆN TRÊN LANDING PAGE */}
+        {/* ========================================================================= */}
+        <section
+          id="tin-tuc"
+          className="order-6 w-full bg-white py-16 md:py-20 border-b border-slate-200"
+        >
+          <div className="container mx-auto flex max-w-7xl flex-col gap-6 px-4 md:px-6">
+            <div className="space-y-2 border-b border-slate-200 pb-5">
+              <p className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-700">
+                <Newspaper className="h-4 w-4" /> Tin tức The Lumia
+              </p>
+              <h2 className="max-w-3xl text-3xl md:text-4xl font-bold text-slate-900 leading-tight">
+                Tin tức và phân tích đầu tư The Lumia
+              </h2>
+              <p className="max-w-2xl text-sm md:text-base text-slate-600 leading-relaxed">
+                Chọn bài viết bạn muốn đọc để xem thông tin vị trí, hạ tầng và
+                cơ hội đầu tư theo góc nhìn thực tế.
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+              {featuredNewsCards.map((article) => (
+                <Link
+                  key={article.slug}
+                  to={`/tin-tuc/${article.slug}`}
+                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-md"
+                >
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="h-32 w-full object-cover"
+                  />
+                  <div className="flex flex-1 flex-col p-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <p className="text-[10px] uppercase tracking-[0.25em] text-amber-700 font-semibold">
+                        {article.tag}
+                      </p>
+                      <Sparkles className="h-4 w-4 text-amber-600" />
+                    </div>
+                    <h3 className="mt-3 text-base md:text-lg font-semibold text-slate-900 leading-snug">
+                      {article.title}
+                    </h3>
+                    <div className="mt-4 flex items-center justify-between gap-3 text-xs text-slate-500">
+                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1">
+                        {article.category}
+                      </span>
+                      <span className="inline-flex items-center gap-1 font-semibold text-amber-700">
+                        Đọc bài viết <ArrowRight className="h-3.5 w-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ========================================================================= */}
+        {/* 3. TỔNG QUAN DỰ ÁN */}
         {/* ========================================================================= */}
         <section
           id="tong-quan"

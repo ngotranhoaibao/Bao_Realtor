@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -8,11 +8,13 @@ import {
   TrendingUp,
   CalendarDays,
 } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { newsArticles } from "@/data/newsArticles";
 
 export default function DetailPage() {
   const { slug } = useParams();
   const article = newsArticles.find((item) => item.slug === slug);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
     if (!article) return;
@@ -39,27 +41,43 @@ export default function DetailPage() {
     setMeta(
       'meta[name="description"]',
       ["name", "description"],
-      articleDescription
+      articleDescription,
     );
     if (keywordContent) {
       setMeta('meta[name="keywords"]', ["name", "keywords"], keywordContent);
     }
     setMeta('meta[property="og:type"]', ["property", "og:type"], "article");
     setMeta('meta[property="og:url"]', ["property", "og:url"], articleUrl);
-    setMeta('meta[property="og:title"]', ["property", "og:title"], articleTitle);
+    setMeta(
+      'meta[property="og:title"]',
+      ["property", "og:title"],
+      articleTitle,
+    );
     setMeta(
       'meta[property="og:description"]',
       ["property", "og:description"],
-      articleDescription
+      articleDescription,
     );
-    setMeta('meta[property="og:image"]', ["property", "og:image"], articleImage);
-    setMeta('meta[name="twitter:title"]', ["name", "twitter:title"], articleTitle);
+    setMeta(
+      'meta[property="og:image"]',
+      ["property", "og:image"],
+      articleImage,
+    );
+    setMeta(
+      'meta[name="twitter:title"]',
+      ["name", "twitter:title"],
+      articleTitle,
+    );
     setMeta(
       'meta[name="twitter:description"]',
       ["name", "twitter:description"],
-      articleDescription
+      articleDescription,
     );
-    setMeta('meta[name="twitter:image"]', ["name", "twitter:image"], articleImage);
+    setMeta(
+      'meta[name="twitter:image"]',
+      ["name", "twitter:image"],
+      articleImage,
+    );
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -151,10 +169,10 @@ export default function DetailPage() {
     <section className="min-h-screen bg-white px-4 py-24 text-slate-900 md:px-6">
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <Link
-          to="/tin-tuc"
+          to="/#tin-tuc"
           className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-800"
         >
-          <ArrowLeft className="h-4 w-4" /> Quay lại danh sách tin tức
+          <ArrowLeft className="h-4 w-4" /> Quay lại phần tin tức
         </Link>
 
         <article className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
@@ -224,19 +242,34 @@ export default function DetailPage() {
           </div>
 
           <div className="border-t border-slate-200 bg-slate-50 p-6 md:p-10">
-            <img
-              src={article.image}
-              alt={article.title}
-              className="h-[280px] w-full rounded-3xl border border-slate-200 object-cover md:h-[360px]"
-            />
+            <button
+              type="button"
+              onClick={() => setSelectedImage(article.image)}
+              className="w-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+              aria-label="Xem ảnh lớn"
+            >
+              <img
+                src={article.image}
+                alt={article.title}
+                className="h-[280px] w-full rounded-[calc(1.5rem-0.25rem)] object-cover md:h-[360px]"
+              />
+            </button>
+
             <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {article.gallery.map((image) => (
-                <img
+                <button
                   key={image}
-                  src={image}
-                  alt={article.title}
-                  className="h-36 w-full rounded-2xl border border-slate-200 object-cover shadow-sm"
-                />
+                  type="button"
+                  onClick={() => setSelectedImage(image)}
+                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+                  aria-label="Xem ảnh lớn"
+                >
+                  <img
+                    src={image}
+                    alt={article.title}
+                    className="h-36 w-full rounded-[calc(1rem-0.375rem)] object-cover"
+                  />
+                </button>
               ))}
             </div>
           </div>
@@ -303,6 +336,21 @@ export default function DetailPage() {
           </div>
         </article>
       </div>
+
+      <Dialog
+        open={Boolean(selectedImage)}
+        onOpenChange={(open) => !open && setSelectedImage(null)}
+      >
+        <DialogContent className="sm:max-w-7xl w-[95vw] border border-slate-200 bg-slate-950/95 p-0 shadow-2xl">
+          <div className="max-h-[92vh] overflow-auto p-2 md:p-3">
+            <img
+              src={selectedImage ?? article.image}
+              alt={article.title}
+              className="mx-auto max-h-[88vh] w-full rounded-2xl object-contain"
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }

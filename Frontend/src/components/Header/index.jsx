@@ -18,7 +18,7 @@ const navItems = [
   { name: "TIỆN ÍCH", href: "#tien-do" },
   { name: "SẢN PHẨM", href: "#mat-bang" },
   { name: "CHÍNH SÁCH", href: "#chinh-sach-ban-hang" },
-  { name: "TIN TỨC", href: "/tin-tuc" },
+  { name: "TIN TỨC", href: "#tin-tuc" },
   { name: "LIÊN HỆ", href: "#lien-he" },
 ];
 

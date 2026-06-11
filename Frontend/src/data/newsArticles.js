@@ -4,8 +4,7 @@ export const newsArticles = [
     tag: "Tin thị trường",
     category: "Đầu tư",
     title: "The Lumia Đà Nẵng – điểm sáng đầu tư tại Tây Bắc Đà Nẵng",
-    seoTitle:
-      "The Lumia Đà Nẵng: điểm sáng đầu tư tại Tây Bắc Đà Nẵng",
+    seoTitle: "The Lumia Đà Nẵng: điểm sáng đầu tư tại Tây Bắc Đà Nẵng",
     seoDescription:
       "Phân tích tiềm năng The Lumia Đà Nẵng tại Liên Chiểu, lợi thế Cảng Liên Chiểu, hạ tầng logistics và cơ hội đầu tư shophouse, nhà phố thương mại.",
     keywords: [
@@ -50,7 +49,8 @@ export const newsArticles = [
           "Với các khu vực đang phát triển theo hạ tầng, biên lợi nhuận không chỉ đến từ thời điểm mua sớm mà còn đến từ khả năng giữ tài sản đủ dài để hạ tầng, dân cư và dịch vụ hoàn thiện. Vì vậy, khi đánh giá The Lumia Đà Nẵng, nhà đầu tư nên xem xét vị trí căn, mặt cắt đường, mật độ lưu thông dự kiến, pháp lý, tiến độ bàn giao và kế hoạch khai thác sau khi nhận nhà.",
       },
       {
-        heading: "Vì sao The Lumia Đà Nẵng dễ được tìm kiếm trong nhóm dự án Liên Chiểu",
+        heading:
+          "Vì sao The Lumia Đà Nẵng dễ được tìm kiếm trong nhóm dự án Liên Chiểu",
         content: [
           "Nhóm từ khóa liên quan đến The Lumia Đà Nẵng thường xoay quanh ba nhu cầu chính: tìm thông tin dự án, tìm bảng giá và tìm góc nhìn đầu tư tại Liên Chiểu. Người mua không chỉ muốn biết dự án nằm ở đâu, mà còn muốn hiểu vì sao khu vực này được quan tâm, sản phẩm nào phù hợp với mục tiêu tài chính và nên chọn căn theo tiêu chí nào. Vì vậy, một bài viết tốt cần trả lời đầy đủ những câu hỏi đó thay vì chỉ liệt kê thông tin ngắn.",
           "The Lumia có lợi thế khi tên dự án gắn trực tiếp với các cụm tìm kiếm có ý định cao như shophouse The Lumia, nhà phố The Lumia, dự án The Lumia Liên Chiểu, bảng giá The Lumia Đà Nẵng và đầu tư bất động sản Tây Bắc Đà Nẵng. Đây là nhóm từ khóa cho thấy người tìm đã có nhu cầu cụ thể hơn so với các truy vấn chung chung. Nội dung bài viết vì vậy cần tập trung vào giá trị sử dụng, khả năng khai thác, bối cảnh hạ tầng và yếu tố hỗ trợ thanh khoản trong tương lai.",
@@ -109,8 +109,7 @@ export const newsArticles = [
     category: "Mô hình kinh doanh",
     title:
       "Shophouse 4 tầng tại The Lumia phù hợp mô hình vừa ở vừa kinh doanh",
-    seoTitle:
-      "Shophouse 4 tầng The Lumia: vừa ở vừa kinh doanh tại Đà Nẵng",
+    seoTitle: "Shophouse 4 tầng The Lumia: vừa ở vừa kinh doanh tại Đà Nẵng",
     seoDescription:
       "Tìm hiểu shophouse 4 tầng The Lumia Đà Nẵng, công năng vừa ở vừa kinh doanh, tiềm năng cho thuê mặt bằng và khai thác dòng tiền dài hạn.",
     keywords: [
@@ -127,11 +126,11 @@ export const newsArticles = [
       "Mô hình shophouse 4 tầng giúp khai thác tối đa công năng thương mại và sinh hoạt tại cùng một mặt bằng, phù hợp với nhu cầu đầu tư thực tế.",
     excerpt:
       "Tầng 1–2 có thể khai thác làm văn phòng, cửa hàng, quán ăn, showroom hoặc mặt bằng kinh doanh phục vụ cư dân và khách hàng đi ngang.",
-    image: "/tuyen-pho-thuong-mai-the-lumia-da-nang.jpg",
+    image: "/9.LMA_View noi that_061625.png",
     gallery: [
-      "/trung-tam-thuong-mai-the-lumia-da-nang.jpg",
-      "/clubhouse-the-lumia-da-nang.jpg",
-      "/anh-1-ktmtd.jpg",
+      "/Post 2 Home2Hub - DL (2).jpg",
+      "/Post 2 Home2Hub - DL (3).jpg",
+      "/Post 2 Home2Hub - DL (4).jpg",
     ],
     bullets: [
       "Tầng 1–2 có thể vận hành doanh nghiệp, dịch vụ hoặc cửa hàng thương mại.",
@@ -199,7 +198,8 @@ export const newsArticles = [
     ],
     faqs: [
       {
-        question: "Shophouse 4 tầng The Lumia có phù hợp để vừa ở vừa kinh doanh không?",
+        question:
+          "Shophouse 4 tầng The Lumia có phù hợp để vừa ở vừa kinh doanh không?",
         answer:
           "Có. Mô hình 4 tầng cho phép tầng thấp kinh doanh hoặc cho thuê, tầng trên dùng để ở, làm văn phòng, lưu trú hoặc khai thác căn hộ dịch vụ tùy nhu cầu.",
       },
@@ -221,8 +221,7 @@ export const newsArticles = [
     category: "Hạ tầng",
     title:
       "The Lumia hưởng lợi từ trục hạ tầng FTZ, Cảng Liên Chiểu và tuyến kết nối mới",
-    seoTitle:
-      "The Lumia hưởng lợi từ FTZ, Cảng Liên Chiểu và hạ tầng mới",
+    seoTitle: "The Lumia hưởng lợi từ FTZ, Cảng Liên Chiểu và hạ tầng mới",
     seoDescription:
       "The Lumia Đà Nẵng hưởng lợi từ Cảng Liên Chiểu, FTZ, logistics và hạ tầng Tây Bắc Đà Nẵng, tạo lợi thế cho bất động sản thương mại.",
     keywords: [
@@ -295,7 +294,8 @@ export const newsArticles = [
         ],
       },
       {
-        heading: "Dấu hiệu cho thấy một khu vực đang bước vào giai đoạn khai thác",
+        heading:
+          "Dấu hiệu cho thấy một khu vực đang bước vào giai đoạn khai thác",
         content: [
           "Nhà đầu tư có thể quan sát một số tín hiệu như mật độ dân cư tăng, nhiều cửa hàng dịch vụ bắt đầu mở, giá thuê mặt bằng hình thành, đường kết nối thuận tiện hơn, tiện ích công cộng hoàn thiện và số lượng giao dịch thực tăng. Khi những tín hiệu này rõ ràng, thị trường thường chuyển từ giai đoạn kỳ vọng sang giai đoạn khai thác.",
           "Với The Lumia Đà Nẵng, việc theo dõi khu vực Liên Chiểu nên được thực hiện định kỳ. Người mua có thể khảo sát thực địa, so sánh với các dự án lân cận, kiểm tra tiến độ hạ tầng và trao đổi với đơn vị tư vấn để có dữ liệu gần thực tế. Nội dung quảng bá giúp tạo nhận diện, nhưng khảo sát và tính toán mới là cơ sở ra quyết định.",
@@ -333,8 +333,7 @@ export const newsArticles = [
     category: "Phân tích",
     title:
       "Khi đầu tư vào dự án The Lumia: phân tích chuyên sâu về dòng tiền và lãi vốn",
-    seoTitle:
-      "Đầu tư The Lumia Đà Nẵng: phân tích dòng tiền và lãi vốn",
+    seoTitle: "Đầu tư The Lumia Đà Nẵng: phân tích dòng tiền và lãi vốn",
     seoDescription:
       "Phân tích đầu tư The Lumia Đà Nẵng theo dòng tiền cho thuê, lãi vốn, vị trí Liên Chiểu, pháp lý, hạ tầng và chiến lược nắm giữ tài sản.",
     keywords: [
@@ -523,12 +522,14 @@ export const newsArticles = [
     ],
     faqs: [
       {
-        question: "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030 tập trung vào những gì?",
+        question:
+          "Quy hoạch Tây Bắc Đà Nẵng đến năm 2030 tập trung vào những gì?",
         answer:
           "Quy hoạch tập trung vào logistics, cảng biển, công nghiệp công nghệ cao, thương mại quốc tế, hạ tầng giao thông và mở rộng không gian đô thị về khu vực Liên Chiểu, Hòa Vang.",
       },
       {
-        question: "Cảng Liên Chiểu ảnh hưởng thế nào đến bất động sản Liên Chiểu?",
+        question:
+          "Cảng Liên Chiểu ảnh hưởng thế nào đến bất động sản Liên Chiểu?",
         answer:
           "Cảng Liên Chiểu có thể thúc đẩy nhu cầu logistics, sản xuất, dịch vụ, nhà ở chuyên gia và mặt bằng kinh doanh, qua đó tạo thêm động lực cho thị trường bất động sản Liên Chiểu.",
       },
