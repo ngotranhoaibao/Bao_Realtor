@@ -32,14 +32,23 @@ import {
   Award,
   ArrowRight,
   Newspaper,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
-const featuredNewsCards = newsArticles.slice(0, 4);
+const featuredNewsCards = newsArticles;
 
 const NewLanding = () => {
   const [isStickyOpen, setIsStickyOpen] = useState(false);
-  // ĐÃ THÊM: State kiểm soát trạng thái xuất hiện của nút bảng giá
   const [showSticky, setShowSticky] = useState(false);
+  const [newsStartIndex, setNewsStartIndex] = useState(0);
+
+  const visibleNewsCards = featuredNewsCards.slice(
+    newsStartIndex,
+    newsStartIndex + 4,
+  );
+  const canGoPrev = newsStartIndex > 0;
+  const canGoNext = newsStartIndex + 4 < featuredNewsCards.length;
 
   // ĐÃ THÊM: Đăng ký sự kiện scroll kiểm tra khoảng cách cuộn màn hình
   useEffect(() => {
@@ -274,39 +283,69 @@ const NewLanding = () => {
               </p>
             </div>
 
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {featuredNewsCards.map((article) => (
-                <Link
-                  key={article.slug}
-                  to={`/tin-tuc/${article.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-md"
-                >
-                  <img
-                    src={article.image}
-                    alt={article.title}
-                    className="h-32 w-full object-cover"
-                  />
-                  <div className="flex flex-1 flex-col p-4">
-                    <div className="flex items-center justify-between gap-3">
-                      <p className="text-[10px] uppercase tracking-[0.25em] text-amber-700 font-semibold">
-                        {article.tag}
-                      </p>
-                      <Sparkles className="h-4 w-4 text-amber-600" />
+            <div className="flex items-center gap-3">
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                onClick={() =>
+                  setNewsStartIndex((prev) => Math.max(prev - 1, 0))
+                }
+                disabled={!canGoPrev}
+                className="h-10 w-10 rounded-full border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-amber-50 hover:text-amber-700 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+
+              <div className="grid flex-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+                {visibleNewsCards.map((article) => (
+                  <Link
+                    key={article.slug}
+                    to={`/tin-tuc/${article.slug}`}
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-md"
+                  >
+                    <img
+                      src={article.image}
+                      alt={article.title}
+                      className="h-32 w-full object-cover"
+                    />
+                    <div className="flex flex-1 flex-col p-4">
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="text-[10px] uppercase tracking-[0.25em] text-amber-700 font-semibold">
+                          {article.tag}
+                        </p>
+                        <Sparkles className="h-4 w-4 text-amber-600" />
+                      </div>
+                      <h3 className="mt-3 text-base md:text-lg font-semibold text-slate-900 leading-snug">
+                        {article.title}
+                      </h3>
+                      <div className="mt-4 flex items-center justify-between gap-3 text-xs text-slate-500">
+                        <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1">
+                          {article.category}
+                        </span>
+                        <span className="inline-flex items-center gap-1 font-semibold text-amber-700">
+                          Đọc bài viết <ArrowRight className="h-3.5 w-3.5" />
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="mt-3 text-base md:text-lg font-semibold text-slate-900 leading-snug">
-                      {article.title}
-                    </h3>
-                    <div className="mt-4 flex items-center justify-between gap-3 text-xs text-slate-500">
-                      <span className="rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1">
-                        {article.category}
-                      </span>
-                      <span className="inline-flex items-center gap-1 font-semibold text-amber-700">
-                        Đọc bài viết <ArrowRight className="h-3.5 w-3.5" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))}
+              </div>
+
+              <Button
+                type="button"
+                variant="outline"
+                size="icon"
+                onClick={() =>
+                  setNewsStartIndex((prev) =>
+                    Math.min(prev + 1, featuredNewsCards.length - 4),
+                  )
+                }
+                disabled={!canGoNext}
+                className="h-10 w-10 rounded-full border-slate-300 bg-white text-slate-700 shadow-sm hover:bg-amber-50 hover:text-amber-700 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
             </div>
           </div>
         </section>
