@@ -11,6 +11,34 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { newsArticles } from "@/data/newsArticles";
 
+const renderLinkedText = (text) => {
+  if (!text) return text;
+
+  const parts = text.split(/(The Lumia Đà Nẵng|The Lumia Da Nang|The Lumia)/gi);
+
+  return parts.map((part, index) => {
+    const normalized = part.toLowerCase();
+    const isBrand =
+      normalized === "the lumia" ||
+      normalized === "the lumia đà nẵng" ||
+      normalized === "the lumia da nang";
+
+    if (!isBrand) {
+      return <React.Fragment key={`${part}-${index}`}>{part}</React.Fragment>;
+    }
+
+    return (
+      <Link
+        key={`${part}-${index}`}
+        to="/"
+        className="font-semibold text-amber-700 underline decoration-amber-400 transition hover:text-amber-800"
+      >
+        {part}
+      </Link>
+    );
+  });
+};
+
 export default function DetailPage() {
   const { slug } = useParams();
   const article = newsArticles.find((item) => item.slug === slug);
@@ -185,7 +213,7 @@ export default function DetailPage() {
                 {article.title}
               </h1>
               <p className="text-base md:text-lg text-slate-600 leading-relaxed">
-                {article.summary}
+                {renderLinkedText(article.summary)}
               </p>
 
               <div className="flex flex-wrap gap-3 text-xs uppercase tracking-[0.25em] text-slate-600">
@@ -234,7 +262,7 @@ export default function DetailPage() {
                 {article.bullets.map((item) => (
                   <li key={item} className="flex gap-3">
                     <Sparkles className="mt-1 h-4 w-4 text-amber-700 shrink-0" />
-                    <span>{item}</span>
+                    <span>{renderLinkedText(item)}</span>
                   </li>
                 ))}
               </ul>
@@ -277,7 +305,7 @@ export default function DetailPage() {
           <div className="grid gap-8 border-t border-slate-200 p-6 md:p-10 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="space-y-8">
               <p className="text-lg leading-relaxed text-slate-700">
-                {article.excerpt}
+                {renderLinkedText(article.excerpt)}
               </p>
 
               {article.sections.map((section) => (
@@ -293,7 +321,7 @@ export default function DetailPage() {
                       key={paragraph}
                       className="text-base leading-8 text-slate-700 md:text-lg"
                     >
-                      {paragraph}
+                      {renderLinkedText(paragraph)}
                     </p>
                   ))}
                 </section>
@@ -310,7 +338,7 @@ export default function DetailPage() {
                         {faq.question}
                       </h3>
                       <p className="text-base leading-7 text-slate-700">
-                        {faq.answer}
+                        {renderLinkedText(faq.answer)}
                       </p>
                     </div>
                   ))}
@@ -323,8 +351,9 @@ export default function DetailPage() {
                 Cần tư vấn chọn sản phẩm phù hợp?
               </h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">
-                Nhận phân tích vị trí, công năng khai thác và phương án dòng
-                tiền theo từng nhu cầu đầu tư tại The Lumia Đà Nẵng.
+                {renderLinkedText(
+                  "Nhận phân tích vị trí, công năng khai thác và phương án dòng tiền theo từng nhu cầu đầu tư tại The Lumia Đà Nẵng.",
+                )}
               </p>
               <Link
                 to="/#lien-he"
