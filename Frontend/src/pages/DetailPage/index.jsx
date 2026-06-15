@@ -43,6 +43,10 @@ export default function DetailPage() {
   const { slug } = useParams();
   const article = newsArticles.find((item) => item.slug === slug);
   const [selectedImage, setSelectedImage] = useState(null);
+  const distributedImages = [
+    article?.image,
+    ...(article?.gallery || []),
+  ].filter(Boolean);
 
   useEffect(() => {
     if (!article) return;
@@ -279,27 +283,9 @@ export default function DetailPage() {
               <img
                 src={article.image}
                 alt={article.title}
-                className="h-[280px] w-full rounded-[calc(1.5rem-0.25rem)] object-cover md:h-[360px]"
+                className="w-full rounded-[calc(1.5rem-0.25rem)] object-contain bg-white max-h-[78vh]"
               />
             </button>
-
-            <div className="mt-6 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {article.gallery.map((image) => (
-                <button
-                  key={image}
-                  type="button"
-                  onClick={() => setSelectedImage(image)}
-                  className="overflow-hidden rounded-2xl border border-slate-200 bg-white p-1.5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500"
-                  aria-label="Xem ảnh lớn"
-                >
-                  <img
-                    src={image}
-                    alt={article.title}
-                    className="h-36 w-full rounded-[calc(1rem-0.375rem)] object-cover"
-                  />
-                </button>
-              ))}
-            </div>
           </div>
 
           <div className="grid gap-8 border-t border-slate-200 p-6 md:p-10 lg:grid-cols-[minmax(0,1fr)_320px]">
@@ -308,24 +294,52 @@ export default function DetailPage() {
                 {renderLinkedText(article.excerpt)}
               </p>
 
-              {article.sections.map((section) => (
-                <section key={section.heading} className="space-y-3">
-                  <h2 className="text-2xl font-bold leading-snug text-slate-900">
-                    {section.heading}
-                  </h2>
-                  {(Array.isArray(section.content)
-                    ? section.content
-                    : [section.content]
-                  ).map((paragraph) => (
-                    <p
-                      key={paragraph}
-                      className="text-base leading-8 text-slate-700 md:text-lg"
-                    >
-                      {renderLinkedText(paragraph)}
-                    </p>
-                  ))}
-                </section>
-              ))}
+              {article.sections.map((section, index) => {
+                const imageIndex = Math.floor((index + 1) / 2);
+                const inlineImage = distributedImages[imageIndex];
+
+                return (
+                  <React.Fragment key={section.heading}>
+                    <section className="space-y-3">
+                      <h2 className="text-2xl font-bold leading-snug text-slate-900">
+                        {section.heading}
+                      </h2>
+                      {(Array.isArray(section.content)
+                        ? section.content
+                        : [section.content]
+                      ).map((paragraph) => (
+                        <p
+                          key={paragraph}
+                          className="text-base leading-8 text-slate-700 md:text-lg"
+                        >
+                          {renderLinkedText(paragraph)}
+                        </p>
+                      ))}
+                    </section>
+
+                    {index % 2 === 1 && inlineImage && (
+                      <figure className="overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-sm">
+                        <button
+                          type="button"
+                          onClick={() => setSelectedImage(inlineImage)}
+                          className="w-full overflow-hidden rounded-[calc(1.5rem-0.25rem)] focus:outline-none focus:ring-2 focus:ring-amber-500"
+                          aria-label="Xem ảnh lớn"
+                        >
+                          <img
+                            src={inlineImage}
+                            alt={`${article.title} - ${section.heading}`}
+                            className="w-full rounded-[calc(1rem-0.375rem)] object-contain bg-white max-h-[60vh]"
+                          />
+                        </button>
+                        <figcaption className="px-2 pb-1 pt-3 text-sm text-slate-500">
+                          Ảnh minh họa được chèn xen kẽ trong nội dung để bài
+                          viết dễ theo dõi hơn.
+                        </figcaption>
+                      </figure>
+                    )}
+                  </React.Fragment>
+                );
+              })}
 
               {article.faqs?.length > 0 && (
                 <section className="space-y-4 rounded-2xl border border-slate-200 bg-slate-50 p-5">
