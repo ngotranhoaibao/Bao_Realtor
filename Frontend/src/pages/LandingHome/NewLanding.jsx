@@ -572,17 +572,20 @@ const NewLanding = () => {
             </div>
 
             <div className="space-y-4 w-full flex flex-col justify-between">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10] bg-slate-900">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/Fzm_wCHbuak"
+                  title="The Lumia Đà Nẵng"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
                 <img
                   src="/vi-tri-the-lumia-da-nang.jpg"
                   alt="Bản đồ liên kết vùng dự án The Lumia"
-                  className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
-                />
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
-                <img
-                  src="/The-Lumia-Da-Nang-Quan-Lien-Chieu-1400x788.jpg"
-                  alt="Hạ tầng Quận Liên Chiểu Đà Nẵng"
                   className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
                 />
               </div>
