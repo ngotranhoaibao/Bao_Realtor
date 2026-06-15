@@ -9,15 +9,12 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Globe } from "lucide-react";
 import toast from "react-hot-toast";
 import { submitContact } from "@/services/api/contact";
 
 export default function Footer() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleFooterSubmit = async (e) => {
@@ -31,13 +28,12 @@ export default function Footer() {
       const payload = {
         name: name.trim(),
         phone: phone.trim(),
-        message: message.trim(),
+        message: "Đăng ký tải tài liệu dự án từ chân trang",
       };
       await submitContact(payload);
       toast.success("Đăng ký nhận thông tin thành công!");
       setName("");
       setPhone("");
-      setMessage("");
     } catch (err) {
       console.error(err);
       toast.error("Gửi thông tin thất bại, vui lòng thử lại.");
@@ -49,29 +45,71 @@ export default function Footer() {
   return (
     <footer
       id="lien-he"
-      className="bg-slate-950 text-white py-16 font-sans antialiased border-t border-white/5 w-full"
+      className="bg-slate-900 text-white pt-16 pb-24 font-sans antialiased border-t border-white/5 w-full relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(to bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), url('https://thelumia.asia/')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
-      {/* KHỐI 1: Chỉ bọc riêng Form đăng ký để giữ form nằm gọn gàng ở giữa */}
-      <div className="container mx-auto px-4 max-w-6xl mb-16">
-        <div className="w-full max-w-4xl mx-auto">
-          <Card className="bg-slate-900 border border-white/10 text-white p-6 md:p-8 rounded-3xl shadow-2xl">
-            <CardHeader className="p-0 pb-6 text-center space-y-2">
-              <CardTitle className="text-xl md:text-2xl font-black text-amber-500 uppercase tracking-wide">
-                ĐĂNG KÝ NHẬN THÔNG TIN DỰ ÁN
-              </CardTitle>
-              <CardDescription className="text-slate-400 text-xs md:text-sm font-medium">
-                (Bảng giá gốc, chính sách thanh toán, ưu đãi chiết khấu, vay vốn
-                lại suất 0%, tham quan nhà mẫu và tư vấn chuyên sâu)
-              </CardDescription>
-            </CardHeader>
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* ========================================================================= */}
+        {/* HÀNG TRÊN: PHÂN CHIA 2 CỘT NGANG NHAU (THÔNG TIN DỰ ÁN & FORM ĐĂNG KÝ) */}
+        {/* ========================================================================= */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-16 items-start w-full mb-16">
+          {/* CỘT TRÁI (CHIẾM 5 CỘT): TIÊU ĐỀ & DANH SÁCH THÔNG TIN */}
+          <div className="md:col-span-5 space-y-6 text-left pt-2">
+            <h2 className="text-2xl md:text-3xl font-black tracking-wide uppercase text-white">
+              THE LUMIA ĐÀ NẴNG
+            </h2>
+            <ul className="text-slate-200 text-sm md:text-base space-y-3 font-medium list-disc pl-5">
+              <li className="leading-relaxed">
+                Địa chỉ liên hệ: Nguyễn Tất Thành Nối Dài, Đà Nẵng 550000 Việt
+                Nam
+              </li>
+              <li className="leading-relaxed">
+                Hotline:{" "}
+                <a
+                  href="tel:0763553105"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  0763 553 105
+                </a>
+              </li>
+              <li className="leading-relaxed">
+                Website:{" "}
+                <a
+                  href="https://thelumia.asia"
+                  className="hover:text-amber-400 transition-colors"
+                >
+                  thelumia.asia
+                </a>
+              </li>
+            </ul>
+          </div>
 
-            <CardContent className="p-0">
-              <form className="space-y-4" onSubmit={handleFooterSubmit}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
+          {/* CỘT PHẢI (CHIẾM 7 CỘT): KHỐI FORM ĐĂNG KÝ NỀN TỐI SỬ DỤNG SHADCN CARD */}
+          <div className="md:col-span-7 w-full max-w-xl md:ml-auto">
+            <Card className="bg-slate-950/90 border border-slate-800 text-white p-6 md:p-8 rounded-none shadow-2xl">
+              {/* Sử dụng CardHeader, CardTitle, CardDescription từ Shadcn UI */}
+              <CardHeader className="p-0  text-center space-y-2">
+                <CardTitle className="text-base md:text-lg font-bold uppercase tracking-wide text-white">
+                  ĐĂNG KÝ TẢI TÀI LIỆU DỰ ÁN
+                </CardTitle>
+                <CardDescription className="text-slate-400 text-xs md:text-sm font-medium leading-relaxed">
+                  Bảng giá, tài liệu, chính sách chiết khấu mới nhất Dự Án The
+                  Lumia Đà Nẵng
+                </CardDescription>
+              </CardHeader>
+
+              {/* Phần thân chứa Form tương tác */}
+              <CardContent className="p-0">
+                <form className="space-y-4" onSubmit={handleFooterSubmit}>
+                  {/* Ô nhập Họ tên kèm Label Shadcn */}
+                  <div className="w-full space-y-1.5 text-left">
                     <Label
                       htmlFor="footer-name"
-                      className="text-xs font-bold uppercase tracking-wider text-slate-300"
+                      className="text-xs font-bold uppercase tracking-wider text-slate-400"
                     >
                       Họ và tên *
                     </Label>
@@ -80,14 +118,16 @@ export default function Footer() {
                       placeholder="Họ và tên"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="bg-white border-none text-slate-900 h-11 rounded-xl focus-visible:ring-amber-500 font-medium"
+                      className="bg-white border-none text-slate-900 h-11 rounded-md focus-visible:ring-red-500 font-medium placeholder:text-slate-400"
                       required
                     />
                   </div>
-                  <div className="space-y-1.5">
+
+                  {/* Ô nhập Số điện thoại kèm Label Shadcn */}
+                  <div className="w-full space-y-1.5 text-left">
                     <Label
                       htmlFor="footer-phone"
-                      className="text-xs font-bold uppercase tracking-wider text-slate-300"
+                      className="text-xs font-bold uppercase tracking-wider text-slate-400"
                     >
                       Số điện thoại *
                     </Label>
@@ -97,120 +137,42 @@ export default function Footer() {
                       placeholder="Số điện thoại"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="bg-white border-none text-slate-900 h-11 rounded-xl focus-visible:ring-amber-500 font-medium"
+                      className="bg-white border-none text-slate-900 h-11 rounded-md focus-visible:ring-red-500 font-medium placeholder:text-slate-400"
                       required
                     />
                   </div>
-                </div>
 
-                <div className="space-y-1.5">
-                  <Label
-                    htmlFor="footer-message"
-                    className="text-xs font-bold uppercase tracking-wider text-slate-300"
-                  >
-                    Nội dung thêm
-                  </Label>
-                  <Textarea
-                    id="footer-message"
-                    placeholder="Mời bạn để lại yêu cầu, thời gian liên hệ, hoặc thông tin bổ sung"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="bg-white border-none text-slate-900 rounded-xl text-base focus-visible:ring-amber-500 min-h-[100px] px-4 py-3 font-medium"
-                  />
-                </div>
-
-                <div className="text-center pt-2">
-                  <Button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full sm:w-auto px-10 h-12 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold uppercase tracking-widest rounded-xl transition-all shadow-md"
-                  >
-                    {loading ? "Đang gửi..." : "Gửi ngay"}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
-      </div>
-
-      {/* ========================================================================= */}
-      {/* 2. KHỐI THÔNG TIN VỀ CHÚNG TÔI & LIÊN HỆ — FIX TRÀN VIỀN ĐẸP, KHÔNG LỖI CO CHỮ */}
-      {/* ========================================================================= */}
-      {/* Sử dụng px-6 md:px-16 để tạo khoảng hở tinh tế với hai bên cạnh màn hình */}
-      <div className="w-full px-6 md:px-16 border-t border-white/10 pt-16 mt-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-32 items-start w-full">
-          {/* CỘT TRÁI: VỀ CHÚNG TÔI */}
-          <div className="space-y-5 w-full">
-            <h3 className="text-base md:text-lg font-bold text-amber-500 uppercase tracking-[0.2em] border-l-4 border-amber-500 pl-4 leading-none text-left">
-              VỀ CHÚNG TÔI
-            </h3>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed text-justify font-medium">
-              <strong className="text-white font-semibold">
-                thelumia.asia
-              </strong>{" "}
-              là trang thông tin chính thức đăng tải các thông tin về quy hoạch,
-              quy mô, giá bán và các chính sách bán hàng dự án The Lumia Đà
-              Nẵng. Chúng tôi xin cam kết cung cấp bảng giá gốc và hỗ trợ mọi
-              thủ tục đặt mua trực tiếp từ Chủ đầu tư Công ty Cổ phần Đầu tư Sài
-              Gòn – Đà Nẵng (SDN).
-            </p>
-          </div>
-
-          {/* CỘT PHẢI: LIÊN HỆ CHÍNH THỨC (Đã fix chia đôi 50/50 phẳng, text trải rộng thoải mái) */}
-          <div className="space-y-5 w-full">
-            <h3 className="text-base md:text-lg font-bold text-amber-500 uppercase tracking-[0.2em] border-l-4 border-amber-500 pl-4 leading-none text-left">
-              LIÊN HỆ CHÍNH THỨC
-            </h3>
-
-            <ul className="text-slate-300 text-sm md:text-base w-full divide-y divide-white/5 font-medium text-left">
-              {/* Địa chỉ */}
-              <li className="py-4 flex items-center justify-between gap-4 w-full group">
-                <div className="flex items-center gap-3 shrink-0">
-                  <MapPin className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="font-semibold text-white">Địa chỉ</span>
-                </div>
-                <span className="text-slate-300 text-right group-hover:text-amber-400 transition-colors duration-300">
-                  606 đường 2 tháng 9, Q. Hải Châu, TP. Đà Nẵng, Việt Nam
-                </span>
-              </li>
-
-              {/* Hotline */}
-              <li className="py-4 flex items-center justify-between gap-4 w-full group">
-                <div className="flex items-center gap-3 shrink-0">
-                  <Phone className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="font-semibold text-white">Hotline</span>
-                </div>
-                <a
-                  href="tel:0763553105"
-                  className="text-slate-300 hover:text-amber-400 text-right tracking-wider transition-colors duration-300"
-                >
-                  076 355 3105
-                </a>
-              </li>
-
-              {/* Website */}
-              <li className="py-4 flex items-center justify-between gap-4 w-full group">
-                <div className="flex items-center gap-3 shrink-0">
-                  <Globe className="h-4 w-4 text-amber-500 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="font-semibold text-white">Website</span>
-                </div>
-                <a
-                  href="https://thelumia.asia/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-300 hover:text-amber-400 text-right break-all transition-colors duration-300"
-                >
-                  https://thelumia.asia/
-                </a>
-              </li>
-            </ul>
+                  {/* Nút bấm Submit chuẩn Shadcn UI */}
+                  <div className="pt-2">
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full h-11 bg-red-600 hover:bg-red-700 text-white font-bold text-sm uppercase tracking-wider rounded-md transition-all shadow-md active:scale-99"
+                    >
+                      {loading ? "Đang xử lý..." : "Nhận thông tin"}
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
 
-        {/* Bản quyền dưới chân trang */}
-        <div className="border-t border-white/5 mt-16 pt-8 text-center text-xs text-slate-600 tracking-widest w-full font-medium">
-          <p>© COPYRIGHT 2026 THE LUMIA DA NANG. ALL RIGHTS RESERVED.</p>
+        {/* ========================================================================= */}
+        {/* HÀNG DƯỚI: KHỐI LIÊN KẾT & MIỄN TRỪ TRÁCH NHIỆM PHÁP LÝ */}
+        {/* ========================================================================= */}
+        <div className="max-w-4xl mx-auto pt-8 border-t border-white/10 space-y-4 text-center">
+          <p className="text-slate-400 text-sm md:text-base leading-relaxed text-justify font-medium">
+            <strong className="text-white font-semibold">thelumia.asia</strong>{" "}
+            là trang thông tin chính thức chuyên cung cấp, cập nhật liên tục các
+            thông tin quy hoạch chi tiết, tiến độ xây dựng hạ tầng, bảng giá đợt
+            1 và các chính sách ưu đãi chiết khấu trực tiếp từ chủ đầu tư. Chúng
+            tôi đồng hành sát sao cùng quý khách hàng trong việc tư vấn lựa chọn
+            phương án an cư và đầu tư tối ưu nhất.
+          </p>
+          <p className="text-xs text-slate-500 tracking-widest  font-bold">
+            COPYRIGHT 2026 © THE LUMIA ĐÀ NẴNG. ALL RIGHTS RESERVED.
+          </p>
         </div>
       </div>
     </footer>
