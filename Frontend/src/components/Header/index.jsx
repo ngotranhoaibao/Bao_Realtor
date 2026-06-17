@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -52,9 +53,11 @@ const Header = () => {
           href="/"
           className="flex items-center gap-2 shrink-0 transition-opacity hover:opacity-90 animate-fade-in"
         >
-          <img
+          <Image
             src="/the-lumia-da-nang-logo-white.png"
             alt="The Lumia Đà Nẵng Official Website"
+            width={180}
+            height={48}
             className="h-12 w-auto object-contain brightness-110 contrast-105"
           />
         </Link>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   ArrowRight,
@@ -280,9 +281,11 @@ export default function DetailPage({ article: articleProp }) {
               className="w-full overflow-hidden rounded-3xl border border-slate-200 bg-white p-2 shadow-sm transition hover:shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500"
               aria-label="Xem ảnh lớn"
             >
-              <img
+              <Image
                 src={article.image}
                 alt={article.title}
+                width={1200}
+                height={800}
                 className="w-full rounded-[calc(1.5rem-0.25rem)] object-contain bg-white max-h-[78vh]"
               />
             </button>
@@ -325,9 +328,11 @@ export default function DetailPage({ article: articleProp }) {
                           className="w-full overflow-hidden rounded-[calc(1.5rem-0.25rem)] focus:outline-none focus:ring-2 focus:ring-amber-500"
                           aria-label="Xem ảnh lớn"
                         >
-                          <img
+                          <Image
                             src={inlineImage}
                             alt={`${article.title} - ${section.heading}`}
+                            width={1000}
+                            height={700}
                             className="w-full rounded-[calc(1rem-0.375rem)] object-contain bg-white max-h-[60vh]"
                           />
                         </button>
@@ -386,9 +391,11 @@ export default function DetailPage({ article: articleProp }) {
       >
         <DialogContent className="sm:max-w-7xl w-[95vw] border border-slate-200 bg-slate-950/95 p-0 shadow-2xl">
           <div className="max-h-[92vh] overflow-auto p-2 md:p-3">
-            <img
+            <Image
               src={selectedImage ?? article.image}
               alt={article.title}
+              width={1600}
+              height={1000}
               className="mx-auto max-h-[88vh] w-full rounded-2xl object-contain"
             />
           </div>

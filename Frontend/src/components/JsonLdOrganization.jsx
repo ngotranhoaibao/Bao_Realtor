@@ -1,5 +1,3 @@
-"use client";
-
 export default function JsonLdOrganization() {
   const schema = {
     "@context": "https://schema.org",

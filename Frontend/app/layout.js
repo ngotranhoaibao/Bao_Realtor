@@ -30,7 +30,8 @@ export default function RootLayout({ children }) {
         <link rel="canonical" href="https://thelumia.asia" />
       </head>
       <body style={{ margin: 0, backgroundColor: "#fff" }}>
-        <LayoutClient>{children}</LayoutClient>
+        {children}
+        <LayoutClient />
       </body>
     </html>
   );

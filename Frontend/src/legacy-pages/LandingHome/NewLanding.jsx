@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { newsArticles } from "@/data/newsArticles";
 import {
@@ -206,10 +207,12 @@ const NewLanding = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
               <div className="w-full flex justify-center items-center">
                 <div className="w-full max-w-2xl overflow-hidden rounded-3xl shadow-[0_0_60px_rgba(147,51,234,0.2)] bg-slate-900 border border-purple-500/20 p-2 group">
-                  <img
-                    src="GIACA.jpg"
+                  <Image
+                    src="/GIACA.jpg"
                     alt="Chính sách giá bán và ưu đãi nhà phố xây sẵn"
                     loading="lazy"
+                    width={1200}
+                    height={800}
                     className="w-full h-auto object-cover rounded-2xl group-hover:scale-[1.01] transition-transform duration-300"
                   />
                 </div>
@@ -330,9 +333,11 @@ const NewLanding = () => {
                     href={`/tin-tuc/${article.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-md"
                   >
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.title}
+                      width={600}
+                      height={360}
                       className="h-32 w-full object-cover"
                     />
                     <div className="flex flex-1 flex-col p-4">
@@ -467,24 +472,30 @@ const NewLanding = () => {
 
             <div className="space-y-6 flex flex-col justify-between">
               <div className="overflow-hidden rounded-2xl shadow-md border border-slate-200 aspect-[16/10]">
-                <img
+                <Image
                   src="/the-lumia-da-nang.jpg"
                   alt="Phối cảnh tổng thể dự án"
+                  width={1600}
+                  height={1000}
                   className="w-full h-full object-cover hover:scale-105 transition duration-500"
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div className="overflow-hidden rounded-xl border aspect-video shadow-sm">
-                  <img
+                  <Image
                     src="/quy-hoach-du-an-the-lumia-da-nang.jpg"
                     alt="Bản đồ quy hoạch"
+                    width={1600}
+                    height={1000}
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="overflow-hidden rounded-xl border aspect-video shadow-sm">
-                  <img
+                  <Image
                     src="/canh-quan-tien-ich-the-lumia-da-nang.jpg"
                     alt="Cảnh quan công viên"
+                    width={1600}
+                    height={1000}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -670,9 +681,11 @@ const NewLanding = () => {
                 ></iframe>
               </div>
               <div className="rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 aspect-[16/10]">
-                <img
+                <Image
                   src="/vi-tri-the-lumia-da-nang.jpg"
                   alt="Bản đồ liên kết vùng dự án The Lumia"
+                  width={1600}
+                  height={1000}
                   className="w-full h-full object-cover hover:scale-[1.012] transition-transform duration-300"
                 />
               </div>
@@ -694,12 +707,14 @@ const NewLanding = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="w-full lg:col-span-5 flex justify-center items-center">
               <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-sm border border-slate-100 p-2">
-                <img
+                <Image
                   alt="Lý do để sở hữu dự án Lumia Đà Nẵng sơ đồ"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-auto object-contain mx-auto"
                   src="/CIRCLE-838x800.png"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto object-contain mx-auto"
                 />
               </div>
             </div>
@@ -821,9 +836,11 @@ const NewLanding = () => {
             </div>
 
             <div className="rounded-3xl overflow-hidden shadow-md border bg-white p-2">
-              <img
+              <Image
                 src="/tong-mat-bang-the-lumia-da-nang.jpg"
                 alt="Mặt bằng chi tiết phân lô"
+                width={1600}
+                height={1000}
                 className="w-full h-auto rounded-2xl"
               />
             </div>
@@ -959,9 +976,11 @@ const NewLanding = () => {
                   className="p-6 md:p-8 space-y-6 focus-visible:outline-none"
                 >
                   <div className="rounded-2xl overflow-hidden border border-slate-800 mb-4 aspect-video shadow-md">
-                    <img
+                    <Image
                       src="/tong-mat-bang-the-lumia-da-nang.jpg"
                       alt="Tổng mặt bằng dự án"
+                      width={1600}
+                      height={1000}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -979,9 +998,11 @@ const NewLanding = () => {
                   className="p-6 md:p-8 space-y-4 text-base md:text-lg text-slate-200 focus-visible:outline-none text-justify leading-relaxed"
                 >
                   <div className="rounded-2xl overflow-hidden border border-slate-800 mb-4 aspect-video shadow-md">
-                    <img
+                    <Image
                       src="/cac-phan-khu-giai-doan-1-the-lumia-da-nang.jpg"
                       alt="Mặt bằng phân khu"
+                      width={1600}
+                      height={1000}
                       className="w-full h-full object-cover"
                     />
                   </div>
@@ -1003,10 +1024,12 @@ const NewLanding = () => {
                 >
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/benh-vien-quoc-te-the-lumia-da-nang.jpg"
                         alt="Bệnh viện"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1016,10 +1039,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/truong-hoc-quoc-te-the-lumia-da-nang.jpg"
                         alt="Trường học"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1029,10 +1054,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/trung-tam-thuong-mai-the-lumia-da-nang.jpg"
                         alt="Trung tâm thương mại"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1042,10 +1069,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/tuyen-pho-thuong-mai-the-lumia-da-nang.jpg"
                         alt="Tuyến phố"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1055,10 +1084,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/cong-vien-chu-de-the-lumia-da-nang.jpg"
                         alt="Công viên"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1068,10 +1099,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/ho-canh-quan-the-lumia-da-nang.jpg"
                         alt="Hồ cảnh quan"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1081,10 +1114,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/san-tap-golf-the-lumia-da-nang.jpg"
                         alt="Sân golf"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1094,10 +1129,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/san-the-thao-the-lumia-da-nang.jpg"
                         alt="Sân thê thao"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1107,10 +1144,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/san-choi-tre-em-the-lumia-da-nang.jpg"
                         alt="Sân chơi"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1120,10 +1159,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/rap-chieu-phim-ngoai-troi-the-lumia-da-nang.jpg"
                         alt="Rạp phim"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1133,10 +1174,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/khu-cam-trai-the-lumia-da-nang.jpg"
                         alt="Camping"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
@@ -1146,10 +1189,12 @@ const NewLanding = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="rounded-xl overflow-hidden border border-slate-800 aspect-[16/10] shadow-md bg-slate-900">
-                      <img
+                      <Image
                         src="/clubhouse-the-lumia-da-nang.jpg"
                         alt="Clubhouse"
                         loading="lazy"
+                        width={800}
+                        height={500}
                         className="w-full h-full object-cover hover:scale-105 transition duration-300"
                       />
                     </div>
