@@ -2,7 +2,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const apiInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ,
+  baseURL:
+    process.env.NEXT_PUBLIC_API_URL ||
+    process.env.VITE_API_URL ||
+    "http://localhost:3000/api",
   timeout: 100000,
   headers: {
     "Content-Type": "application/json",
@@ -11,12 +14,23 @@ const apiInstance = axios.create({
 
 apiInstance.interceptors.request.use(
   (config) => {
-    const parseUserInfo = JSON.parse(localStorage.getItem("user"));
-    const token =
-      parseUserInfo?.data?.data?.accessToken || parseUserInfo?.accessToken;
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    if (typeof window === "undefined") return config;
+
+    try {
+      const rawUser = localStorage.getItem("user");
+      if (!rawUser) return config;
+
+      const parseUserInfo = JSON.parse(rawUser);
+      const token =
+        parseUserInfo?.data?.data?.accessToken || parseUserInfo?.accessToken;
+
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (error) {
+      console.warn("Failed to parse auth token from localStorage", error);
     }
+
     return config;
   },
   (error) => {

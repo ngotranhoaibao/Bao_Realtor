@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,7 +11,6 @@ import {
   CalendarDays,
 } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { newsArticles } from "@/data/newsArticles";
 
 const renderLinkedText = (text) => {
   if (!text) return text;
@@ -30,7 +31,7 @@ const renderLinkedText = (text) => {
     return (
       <Link
         key={`${part}-${index}`}
-        to="/"
+        href="/"
         className="font-semibold text-amber-700 underline decoration-amber-400 transition hover:text-amber-800"
       >
         {part}
@@ -39,9 +40,8 @@ const renderLinkedText = (text) => {
   });
 };
 
-export default function DetailPage() {
-  const { slug } = useParams();
-  const article = newsArticles.find((item) => item.slug === slug);
+export default function DetailPage({ article: articleProp }) {
+  const article = articleProp ?? null;
   const [selectedImage, setSelectedImage] = useState(null);
   const distributedImages = [
     article?.image,
@@ -187,7 +187,7 @@ export default function DetailPage() {
             thông tin mới nhất.
           </p>
           <Link
-            to="/"
+            href="/"
             className="mt-8 inline-flex items-center gap-2 text-amber-300 hover:text-amber-200 font-semibold"
           >
             <ArrowLeft className="h-4 w-4" /> Quay lại trang chủ
@@ -201,7 +201,7 @@ export default function DetailPage() {
     <section className="min-h-screen bg-white px-4 py-24 text-slate-900 md:px-6">
       <div className="mx-auto flex max-w-7xl flex-col gap-8">
         <Link
-          to="/#tin-tuc"
+          href="/#tin-tuc"
           className="inline-flex w-fit items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-800"
         >
           <ArrowLeft className="h-4 w-4" /> Quay lại phần tin tức
@@ -370,7 +370,7 @@ export default function DetailPage() {
                 )}
               </p>
               <Link
-                to="/#lien-he"
+                href="/#lien-he"
                 className="mt-5 inline-flex items-center gap-2 rounded-full bg-amber-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-amber-800"
               >
                 Liên hệ tư vấn <ArrowRight className="h-4 w-4" />

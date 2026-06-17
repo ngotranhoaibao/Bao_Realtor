@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -23,56 +25,30 @@ const navItems = [
 ];
 
 const Header = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const scrollToSection = (targetId) => {
+    const element = document.getElementById(targetId.replace("#", ""));
 
-  const scrollToSection = (targetId, attempt = 0) => {
-    const targetElement = document.querySelector(targetId);
-
-    if (!targetElement) {
-      if (attempt < 12) {
-        window.setTimeout(() => scrollToSection(targetId, attempt + 1), 80);
-      }
-      return;
-    }
-
-    window.history.replaceState(null, "", targetId);
+    if (!element) return;
 
     const headerOffset = 80;
-    const elementPosition = targetElement.getBoundingClientRect().top;
+    const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: offsetPosition, behavior: "smooth" });
   };
 
   const handleScroll = (e, href) => {
+    if (!href.startsWith("#")) return;
+
     e.preventDefault();
-
-    if (href.startsWith("/")) {
-      navigate(href);
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      return;
-    }
-
-    const targetId = href.startsWith("#") ? href : `#${href}`;
-
-    if (location.pathname !== "/") {
-      navigate(`/${targetId}`);
-      window.setTimeout(() => scrollToSection(targetId), 120);
-      return;
-    }
-
-    scrollToSection(targetId);
+    scrollToSection(href);
   };
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full h-20 border-b border-white/10 bg-slate-950/60 backdrop-blur-md">
       <div className="container flex h-full items-center justify-between mx-auto px-4">
         {/* LOGO CHÍNH THỨC DỰ ÁN THE LUMIA ĐÀ NẴNG */}
-        <a
+        <Link
           href="/"
           className="flex items-center gap-2 shrink-0 transition-opacity hover:opacity-90 animate-fade-in"
         >
@@ -81,7 +57,7 @@ const Header = () => {
             alt="The Lumia Đà Nẵng Official Website"
             className="h-12 w-auto object-contain brightness-110 contrast-105"
           />
-        </a>
+        </Link>
 
         {/* DESKTOP NAVIGATION */}
         <div className="hidden md:flex items-center">
@@ -90,7 +66,9 @@ const Header = () => {
               {navItems.map((item) => (
                 <NavigationMenuItem key={item.name}>
                   <NavigationMenuLink
-                    href={item.href}
+                    href={
+                      item.href.startsWith("#") ? `/${item.href}` : item.href
+                    }
                     onClick={(e) => handleScroll(e, item.href)}
                     className={`${navigationMenuTriggerStyle()} cursor-pointer bg-transparent text-slate-200 hover:text-amber-400 font-semibold text-xs tracking-widest transition-colors duration-200`}
                     style={{ backgroundColor: "transparent" }}
@@ -121,14 +99,16 @@ const Header = () => {
             >
               <nav className="flex flex-col gap-5 mt-12">
                 {navItems.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
-                    href={item.href}
+                    href={
+                      item.href.startsWith("#") ? `/${item.href}` : item.href
+                    }
                     onClick={(e) => handleScroll(e, item.href)}
                     className="text-xs font-bold tracking-widest text-slate-200 hover:text-amber-400 transition-colors border-b border-white/5 pb-2"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </SheetContent>

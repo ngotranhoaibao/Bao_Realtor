@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { newsArticles } from "@/data/newsArticles";
 import {
@@ -325,7 +327,7 @@ const NewLanding = () => {
                 {visibleNewsCards.map((article) => (
                   <Link
                     key={article.slug}
-                    to={`/tin-tuc/${article.slug}`}
+                    href={`/tin-tuc/${article.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-md"
                   >
                     <img

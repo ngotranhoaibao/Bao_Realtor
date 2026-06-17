@@ -7,15 +7,21 @@ dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [
-  "http://localhost:3001",
-  "https://thelumia.asia",
-  "https://www.thelumia.asia",
-  ...(process.env.CORS_ORIGINS || "")
-    .split(",")
-    .map((origin) => origin.trim())
-    .filter(Boolean),
-];
+const allowedOrigins =
+  process.env.NODE_ENV === "production"
+    ? [
+        "https://thelumia.asia",
+        "https://www.thelumia.asia",
+        ...(process.env.CORS_ORIGINS || "")
+          .split(",")
+          .map((origin) => origin.trim())
+          .filter(Boolean),
+      ]
+    : [
+        "http://localhost:3001",
+        "http://localhost:3000",
+        "http://localhost:5173",
+      ];
 
 app.use(
   cors({
