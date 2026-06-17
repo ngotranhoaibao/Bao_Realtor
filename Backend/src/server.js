@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:5173",
+  "http://localhost:3001",
   "https://thelumia.asia",
   "https://www.thelumia.asia",
   ...(process.env.CORS_ORIGINS || "")
