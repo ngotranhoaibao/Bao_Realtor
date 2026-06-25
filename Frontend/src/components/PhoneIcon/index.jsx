@@ -16,7 +16,7 @@ const PhoneIcon = () => {
       <div className="fixed bottom-6 left-6 z-[9999] pointer-events-auto select-none font-sans">
         <a
           href="tel:0763553105"
-          className="relative flex items-center gap-3 rounded-full px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-105"
+          className="relative flex items-center gap-3 rounded-full px-3 py-2 sm:px-4 sm:py-3 transition-transform duration-300 ease-in-out hover:scale-105"
           aria-label="Gọi ngay 076 355 3105"
         >
           <div className="relative flex items-center">
@@ -26,14 +26,14 @@ const PhoneIcon = () => {
             </span>
           </div>
 
-          <div className="ml-2 flex items-center gap-3 bg-gradient-to-r from-amber-400 to-amber-500 px-5 py-3 rounded-full shadow-lg backdrop-blur-sm">
+          <div className="hidden sm:flex ml-2 items-center gap-3 bg-gradient-to-r from-amber-400 to-amber-500 px-5 py-3 rounded-full shadow-lg backdrop-blur-sm">
             <div className="flex flex-col">
               <span className="text-xs font-bold text-white/95">Gọi ngay</span>
               <span className="text-lg font-black text-white tracking-tight">
                 076 355 3105
               </span>
             </div>
-            <div className="hidden sm:block border-l border-white/40 pl-3">
+            <div className="border-l border-white/40 pl-3">
               <span className="text-xs font-semibold text-white/90">
                 Tư vấn & đặt chỗ
               </span>

@@ -17,7 +17,7 @@ const ZaloIcon = () => {
           href="https://zalo.me/0763553105"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative flex items-center gap-3 rounded-full px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-105"
+          className="relative flex items-center gap-3 rounded-full px-3 py-2 sm:px-4 sm:py-3 transition-transform duration-300 ease-in-out hover:scale-105"
           aria-label="Chat Zalo 076 355 3105"
         >
           <div className="relative flex items-center">
@@ -33,14 +33,14 @@ const ZaloIcon = () => {
             </span>
           </div>
 
-          <div className="ml-2 flex items-center gap-3 bg-gradient-to-r from-blue-400 to-blue-500 px-5 py-3 rounded-full shadow-lg backdrop-blur-sm">
+          <div className="hidden sm:flex ml-2 items-center gap-3 bg-gradient-to-r from-blue-400 to-blue-500 px-5 py-3 rounded-full shadow-lg backdrop-blur-sm">
             <div className="flex flex-col">
               <span className="text-xs font-bold text-white/95">Chat Zalo</span>
               <span className="text-lg font-black text-white tracking-tight">
                 0763553105
               </span>
             </div>
-            <div className="hidden sm:block border-l border-white/40 pl-3">
+            <div className="border-l border-white/40 pl-3">
               <span className="text-xs font-semibold text-white/90">
                 Liên hệ ngay
               </span>

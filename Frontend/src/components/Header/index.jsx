@@ -59,7 +59,11 @@ const Header = () => {
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-slate-900">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-slate-950 bg-white/90 hover:bg-white focus-visible:ring-2 focus-visible:ring-white/80"
+              >
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
