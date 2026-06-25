@@ -16,11 +16,8 @@ const getEnvOrigins = (origins) =>
 const allowedOrigins =
   process.env.NODE_ENV === "production"
     ? [
-        "https://s-lighttowersungroup.com",
-        "https://www.s-lighttowersungroup.com",
-        "https://s-lightsungroup.vercel.app",
-        "https://s-lighttower.io.vn",
-        "https://www.s-lighttower.io.vn",
+        "https://s-lighttower.id.vn",
+        "https://www.s-lighttower.id.vn",
         ...getEnvOrigins(process.env.CORS_ORIGINS),
         "http://localhost:3001",
         "http://localhost:3000",

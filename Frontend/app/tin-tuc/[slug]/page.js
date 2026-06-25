@@ -15,10 +15,10 @@ export async function generateMetadata({ params }) {
     return {};
   }
 
-  const articleUrl = `https://s-lighttowersungroup.com/tin-tuc/${slug}`;
+  const articleUrl = `https://s-lighttower.id.vn/tin-tuc/${slug}`;
   const articleImage = article.image
-    ? `https://s-lighttowersungroup.com${article.image}`
-    : "https://s-lighttowersungroup.com/logo.png";
+    ? `https://s-lighttower.id.vn${article.image}`
+    : "https://s-lighttower.id.vn/images/logo-sun-s-light-tower.avif";
 
   const seoTitle = `${article.seoTitle || article.title} | S-Light Tower`;
   const seoDescription =
@@ -73,26 +73,26 @@ function ArticleJsonLd({ article, slug }) {
     headline: article.title,
     description: article.excerpt || article.summary,
     image: article.image
-      ? `https://s-lighttowersungroup.com${article.image}`
-      : "https://s-lighttowersungroup.com/logo.png",
+      ? `https://s-lighttower.id.vn${article.image}`
+      : "https://s-lighttower.id.vn/images/logo-sun-s-light-tower.avif",
     datePublished: article.date || new Date().toISOString(),
     dateModified: article.date || new Date().toISOString(),
     author: {
       "@type": "Organization",
       name: "S-Light Tower",
-      url: "https://s-lighttowersungroup.com",
+      url: "https://s-lighttower.id.vn",
     },
     publisher: {
       "@type": "Organization",
       name: "S-Light Tower",
       logo: {
         "@type": "ImageObject",
-        url: "https://s-lighttowersungroup.com/logo.png",
+        url: "https://s-lighttower.id.vn/images/logo-sun-s-light-tower.avif",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://s-lighttowersungroup.com/tin-tuc/${slug}`,
+      "@id": `https://s-lighttower.id.vn/tin-tuc/${slug}`,
     },
   };
 

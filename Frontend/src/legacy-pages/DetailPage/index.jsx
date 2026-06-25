@@ -53,10 +53,10 @@ export default function DetailPage({ article: articleProp }) {
   useEffect(() => {
     if (!article) return;
 
-    const articleUrl = `https://s-lighttowersungroup.com/tin-tuc/${article.slug}`;
+    const articleUrl = `https://s-lighttower.id.vn/tin-tuc/${article.slug}`;
     const articleTitle = `${article.seoTitle || article.title} | S-Light Tower`;
     const articleDescription = article.seoDescription || article.summary;
-    const articleImage = `https://s-lighttowersungroup.com${article.image}`;
+    const articleImage = `https://s-lighttower.id.vn${article.image}`;
     const keywordContent = article.keywords?.join(", ");
 
     document.title = articleTitle;
@@ -146,7 +146,7 @@ export default function DetailPage({ article: articleProp }) {
             name: "S-Light Tower",
             logo: {
               "@type": "ImageObject",
-              url: "https://s-lighttowersungroup.com/logo.png",
+              url: "/images/logo-sun-s-light-tower.avif",
             },
           },
           datePublished: "2026-06-10",

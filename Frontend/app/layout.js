@@ -12,7 +12,7 @@ export const metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://s-lighttowersungroup.com",
+    url: "https://s-lighttower.id.vn",
     title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
     description:
       "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng.",
@@ -31,7 +31,7 @@ export default function RootLayout({ children }) {
     <html lang="vi">
       <head>
         <JsonLdOrganization />
-        <link rel="canonical" href="https://s-lighttowersungroup.com" />
+        <link rel="canonical" href="https://s-lighttower.id.vn" />
       </head>
       <body style={{ margin: 0, backgroundColor: "#fff" }}>
         {children}
