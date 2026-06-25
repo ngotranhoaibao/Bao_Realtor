@@ -20,23 +20,28 @@ export async function generateMetadata({ params }) {
     ? `https://s-lighttowersungroup.com${article.image}`
     : "https://s-lighttowersungroup.com/logo.png";
 
+  const seoTitle = `${article.seoTitle || article.title} | S-Light Tower`;
+  const seoDescription =
+    article.seoDescription || article.excerpt || article.summary;
+
   return {
-    title: `${article.title} | S-Light Tower`,
-    description: article.excerpt || article.summary,
+    title: seoTitle,
+    description: seoDescription,
     canonical: articleUrl,
+    keywords: article.keywords || [],
     openGraph: {
       type: "article",
       url: articleUrl,
-      title: article.title,
-      description: article.excerpt || article.summary,
+      title: seoTitle,
+      description: seoDescription,
       images: [{ url: articleImage }],
       publishedTime: article.date,
       authors: ["S-Light Tower"],
     },
     twitter: {
       card: "summary_large_image",
-      title: article.title,
-      description: article.excerpt || article.summary,
+      title: seoTitle,
+      description: seoDescription,
       image: articleImage,
     },
   };

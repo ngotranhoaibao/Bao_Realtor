@@ -7,14 +7,13 @@ export default function Footer() {
         <div className="grid gap-10 lg:grid-cols-3">
           <div className="space-y-4">
             <p className="text-xs uppercase tracking-[0.28em] text-amber-300">
-              SRT MIỀN TRUNG
+              IRIC GROUP
             </p>
             <h2 className="text-2xl font-bold text-white">
-              Công ty TNHH Thương Mại & Đầu Tư SRT Miền Trung
+              Công ty CP Đầu tư IRIC Group
             </h2>
             <p className="text-slate-400 leading-7">
-              Đại lý phân phối chính thức dự án S-Light Tower của Sun Property
-              (Sun Group). Thông tin tư vấn chính xác, bảo mật và chuyên nghiệp.
+              Thông tin tư vấn chính xác, bảo mật và chuyên nghiệp.
             </p>
           </div>
 
@@ -57,7 +56,7 @@ export default function Footer() {
 
       <div className="border-t border-white/10 bg-slate-900/90 py-6">
         <div className="container mx-auto px-4 text-center text-sm text-slate-500">
-          © 2026  đại lý phân phối chính thức Sun
+          © 2026 đại lý phân phối chính thức Sun
         </div>
       </div>
     </footer>

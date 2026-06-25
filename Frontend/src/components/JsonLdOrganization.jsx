@@ -7,7 +7,7 @@ export default function JsonLdOrganization() {
     url: "https://s-lighttowersungroup.com",
     description:
       "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng.",
-    email: "srtmientrungmkt@gmail.com",
+    email: "ngothoaibao@gmail.com",
     telephone: "+84-918-686-579",
     address: {
       "@type": "PostalAddress",

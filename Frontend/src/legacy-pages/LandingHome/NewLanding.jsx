@@ -161,20 +161,21 @@ const NewLanding = () => {
         >
           <div className="container mx-auto px-4 max-w-7xl space-y-12">
             <div className="text-center space-y-4 max-w-4xl mx-auto">
-              <span className="text-amber-600 text-xs md:text-sm font-extrabold uppercase tracking-[0.25em] bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200">
+              <span className="inline-flex items-center justify-center mx-auto text-center text-amber-600 text-[0.65rem] sm:text-xs md:text-sm font-extrabold uppercase tracking-[0.16em] bg-amber-50 px-4 py-1.5 rounded-full border border-amber-200 whitespace-nowrap">
                 Biểu tượng sống mới tại Nam Đà Nẵng
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black font-title-luxury text-slate-900 uppercase tracking-wide leading-tight pt-1">
-                TỔNG QUAN DỰ ÁN S-LIGHT TOWER
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black font-title-luxury text-slate-900 uppercase tracking-wide leading-tight pt-1 md:whitespace-nowrap">
+                TỔNG QUAN DỰ ÁN{" "}
+                <span className="whitespace-nowrap">S - Light TOWER</span>
               </h2>
               <div className="w-20 h-1 bg-gradient-to-r from-amber-500 to-amber-600 mx-auto rounded"></div>
               <p className="max-w-3xl mx-auto text-slate-600 text-base md:text-lg font-medium leading-relaxed pt-1">
-                <span className="font-bold text-slate-900">
-                  S - Light Tower
+                <span className="font-bold text-slate-900 whitespace-nowrap">
+                  S - Light
                 </span>{" "}
-                là tổ hợp căn hộ hạng sang đẳng cấp quốc tế thuộc đại đô thị Sun
-                NeO City, kiến tạo không gian sống đỉnh cao soi bóng bên dải
-                nước lãng mạn vô giá của dòng sông Hàn thơ mộng.
+                Tower là tổ hợp căn hộ hạng sang đẳng cấp quốc tế thuộc đại đô
+                thị Sun NeO City, kiến tạo không gian sống đỉnh cao soi bóng bên
+                dải nước lãng mạn vô giá của dòng sông Hàn thơ mộng.
               </p>
             </div>
 
@@ -227,10 +228,10 @@ const NewLanding = () => {
                       <span>Quy mô xây dựng</span>
                     </div>
                     <p className="text-slate-900 font-extrabold text-sm md:text-base">
-                      Khu đất vàng rộng 4.650m²
+                      Diện tích dự án 4.165m²
                     </p>
                     <p className="text-slate-500 text-xs font-semibold">
-                      02 Tòa tháp cao 22 tầng nổi & 2 tầng hầm
+                      02 Tòa tháp cao 22 tầng nổi & 3 tầng hầm
                     </p>
                   </div>
 
@@ -240,7 +241,7 @@ const NewLanding = () => {
                       <span>Cơ cấu sản phẩm</span>
                     </div>
                     <p className="text-slate-900 font-extrabold text-sm md:text-base">
-                      Tổng số 1.281 căn hộ
+                      Tổng số gần 800 căn hộ
                     </p>
                     <p className="text-slate-500 text-xs font-semibold">
                       Studio, 1BR+, 2BR, 3BR, Penthouse
@@ -256,7 +257,7 @@ const NewLanding = () => {
                       Thiết kế biểu tượng cao quý
                     </p>
                     <p className="text-slate-500 text-xs font-semibold">
-                      Được chắp bút bởi đơn vị danh tiếng Aedas
+                      Lấy cảm hứng từ kiến trúc "Hạc Vân Thiên"
                     </p>
                   </div>
 
@@ -269,7 +270,7 @@ const NewLanding = () => {
                       Khởi công Quý II/2026
                     </p>
                     <p className="text-slate-500 text-xs font-semibold">
-                      Dự kiến bàn giao vào Quý IV/2027
+                      Dự kiến bàn giao vào Quý III/2028
                     </p>
                   </div>
                 </div>
