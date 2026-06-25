@@ -1,9 +1,10 @@
 import { newsArticles } from "@/data/newsArticles";
 
-const baseUrl = "https://s-lighttower.id.vn";
+const baseUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://s-lighttower.id.vn";
 
 export default function sitemap() {
-  const staticPages = ["", "blog", "du-an"].map((path) => ({
+  const staticPages = [""].map((path) => ({
     url: `${baseUrl}/${path}`.replace(/\/+$/, ""),
     lastModified: new Date().toISOString(),
   }));

@@ -53,6 +53,11 @@ const NewLanding = () => {
   const [isStickyOpen, setIsStickyOpen] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
   const [newsStartIndex, setNewsStartIndex] = useState(0);
+  const [autoOpenCount, setAutoOpenCount] = useState(0);
+
+  const maxAutoOpens = 2;
+  const firstAutoOpenDelay = 5000;
+  const reopenDelay = 15000;
 
   // State quản lý Form tài liệu bổ sung (Giữa trang)
   const [docName, setDocName] = useState("");
@@ -83,6 +88,19 @@ const NewLanding = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (autoOpenCount >= maxAutoOpens) return;
+
+    const delay = autoOpenCount === 0 ? firstAutoOpenDelay : reopenDelay;
+
+    const timer = window.setTimeout(() => {
+      setIsStickyOpen(true);
+      setAutoOpenCount((prev) => prev + 1);
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [autoOpenCount]);
 
   const handleFormSubmit = async (name, phone, message, clearInputs) => {
     if (!name || !phone) {
@@ -782,7 +800,6 @@ const NewLanding = () => {
                   </p>
                 </div>
               </div>
-
               <div className="p-5 bg-slate-50 rounded-2xl border border-slate-100/80 shadow-sm flex items-start gap-4 transition-all hover:bg-white hover:shadow-md h-full">
                 <div className="p-3 bg-red-50 text-red-600 rounded-xl shrink-0 shadow-sm">
                   <Heart className="w-5 h-5" />
@@ -1131,7 +1148,12 @@ const NewLanding = () => {
       <div
         className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ${showSticky ? "opacity-100 scale-100" : "opacity-0 scale-95 invisible pointer-events-none"}`}
       >
-        <Dialog open={isStickyOpen} onOpenChange={setIsStickyOpen}>
+        <Dialog
+          open={isStickyOpen}
+          onOpenChange={(open) => {
+            setIsStickyOpen(open);
+          }}
+        >
           <DialogTrigger asChild>
             <button className="flex items-center gap-2.5 bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 text-amber-950 font-black text-xs md:text-sm px-6 py-3.5 rounded-full shadow-2xl border-2 border-white/60 animate-bounce">
               <div className="flex flex-col text-left">
