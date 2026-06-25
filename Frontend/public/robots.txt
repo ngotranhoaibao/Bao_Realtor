@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://s-lighttower.id.vn/sitemap.xml
+Host: https://s-lighttower.id.vn
