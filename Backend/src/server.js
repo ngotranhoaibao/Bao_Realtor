@@ -7,15 +7,21 @@ dotenv.config();
 
 const app = express();
 
+const getEnvOrigins = (origins) =>
+  (origins || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
+
 const allowedOrigins =
   process.env.NODE_ENV === "production"
     ? [
         "https://s-lighttowersungroup.com",
         "https://www.s-lighttowersungroup.com",
-        ...(process.env.CORS_ORIGINS || "")
-          .split(",")
-          .map((origin) => origin.trim())
-          .filter(Boolean),
+        "https://s-lightsungroup.vercel.app",
+        "https://s-lighttower.io.vn",
+        "https://www.s-lighttower.io.vn",
+        ...getEnvOrigins(process.env.CORS_ORIGINS),
         "http://localhost:3001",
         "http://localhost:3000",
         "http://localhost:5173",
