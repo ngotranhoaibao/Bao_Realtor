@@ -31,29 +31,25 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/20 bg-white/90 backdrop-blur-xl shadow-sm shadow-slate-900/5">
-      <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-3 text-slate-950">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500 text-sm font-bold uppercase text-white">
-            SL
-          </div>
-          <div className="hidden md:block">
-            <p className="text-xs uppercase tracking-[0.32em] text-slate-500">
-              S-Light Tower
-            </p>
-            <p className="text-sm font-semibold text-slate-950">
-              Sun Group Đà Nẵng
-            </p>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-900/10 bg-slate-950 backdrop-blur-xl shadow-sm shadow-slate-950/20">
+      <div className="container mx-auto flex h-28 items-center justify-between px-4">
+        <Link href="/" className="flex items-center gap-3 text-white">
+          <div className="flex h-24 w-34 items-center justify-center rounded-[2.5rem] bg-slate-950 shadow-2xl shadow-slate-950/30">
+            <img
+              src="/images/logo-sun-s-light-tower.avif"
+              alt="logo-sun-s-light"
+              className="h-20 w-auto max-w-full object-contain"
+            />
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
               onClick={(e) => handleScroll(e, item.href)}
-              className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:text-amber-500"
+              className="text-base font-semibold uppercase tracking-[0.18em] text-slate-100 transition hover:text-amber-400"
             >
               {item.name}
             </a>

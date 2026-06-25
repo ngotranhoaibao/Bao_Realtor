@@ -6,6 +6,10 @@ export const metadata = {
   title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
   description:
     "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng. Sống tiện nghi với tầm view sông và hệ tiện ích quốc tế.",
+  icons: {
+    icon: "/images/logo-sun-s-light-tower.avif",
+    apple: "/images/logo-sun-s-light-tower.avif",
+  },
   openGraph: {
     type: "website",
     url: "https://s-lighttowersungroup.com",
