@@ -31,7 +31,7 @@ export const submitContactController = async (req, res) => {
         <div style="max-width:720px; margin:0 auto; background:#ffffff; border-radius:24px; overflow:hidden; box-shadow:0 24px 80px rgba(15,23,42,0.08);">
           <div style="background:#0f172a; color:#f8fafc; padding:28px 32px;">
             <h2 style="margin:0; font-size:1.6rem; letter-spacing:.02em;">Thông tin liên hệ mới</h2>
-            <p style="margin:.75rem 0 0; color:#cbd5e1; font-size:.95rem;">Đã nhận từ form landing page The Lumia Đà Nẵng.</p>
+            <p style="margin:.75rem 0 0; color:#cbd5e1; font-size:.95rem;">Đã nhận từ form landing page S-Light Tower Đà Nẵng.</p>
           </div>
           <div style="padding:28px 32px 32px;">
             <table style="width:100%; border-collapse:collapse; font-size:.95rem; color:#334155;">
@@ -70,18 +70,12 @@ export const submitContactController = async (req, res) => {
       .catch((emailErr) => {
         console.error(
           "-> [Email Lỗi] Không thể gửi mail thông báo ngầm:",
-          emailErr?.message || emailErr
+          emailErr?.message || emailErr,
         );
       });
 
     // 3. Trả về thông báo thành công cho Frontend LẬP TỨC (Không bắt client chờ đợi)
-    return success(
-      res,
-      "Contact saved successfully",
-      contact,
-      201
-    );
-
+    return success(res, "Contact saved successfully", contact, 201);
   } catch (err) {
     return error(res, err.message || "Failed to submit contact", 500);
   }

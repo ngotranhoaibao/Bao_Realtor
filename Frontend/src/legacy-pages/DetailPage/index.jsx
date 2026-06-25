@@ -16,14 +16,15 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 const renderLinkedText = (text) => {
   if (!text) return text;
 
-  const parts = text.split(/(The Lumia Đà Nẵng|The Lumia Da Nang|The Lumia)/gi);
+  const parts = text.split(/(S-Light Tower|S Light Tower|S-Light|S Light)/gi);
 
   return parts.map((part, index) => {
     const normalized = part.toLowerCase();
     const isBrand =
-      normalized === "the lumia" ||
-      normalized === "the lumia đà nẵng" ||
-      normalized === "the lumia da nang";
+      normalized === "s-light tower" ||
+      normalized === "s light tower" ||
+      normalized === "s-light" ||
+      normalized === "s light";
 
     if (!isBrand) {
       return <React.Fragment key={`${part}-${index}`}>{part}</React.Fragment>;
@@ -52,10 +53,10 @@ export default function DetailPage({ article: articleProp }) {
   useEffect(() => {
     if (!article) return;
 
-    const articleUrl = `https://thelumia.asia/tin-tuc/${article.slug}`;
-    const articleTitle = `${article.seoTitle || article.title} | The Lumia Đà Nẵng`;
+    const articleUrl = `https://s-lighttowersungroup.com/tin-tuc/${article.slug}`;
+    const articleTitle = `${article.seoTitle || article.title} | S-Light Tower`;
     const articleDescription = article.seoDescription || article.summary;
-    const articleImage = `https://thelumia.asia${article.image}`;
+    const articleImage = `https://s-lighttowersungroup.com${article.image}`;
     const keywordContent = article.keywords?.join(", ");
 
     document.title = articleTitle;
@@ -138,14 +139,14 @@ export default function DetailPage({ article: articleProp }) {
           mainEntityOfPage: articleUrl,
           author: {
             "@type": "Organization",
-            name: "The Lumia Đà Nẵng",
+            name: "S-Light Tower",
           },
           publisher: {
             "@type": "Organization",
-            name: "The Lumia Đà Nẵng",
+            name: "S-Light Tower",
             logo: {
               "@type": "ImageObject",
-              url: "https://thelumia.asia/the-lumia-da-nang-logo-white.png",
+              url: "https://s-lighttowersungroup.com/logo.png",
             },
           },
           datePublished: "2026-06-10",
@@ -371,7 +372,7 @@ export default function DetailPage({ article: articleProp }) {
               </h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">
                 {renderLinkedText(
-                  "Nhận phân tích vị trí, công năng khai thác và phương án dòng tiền theo từng nhu cầu đầu tư tại The Lumia Đà Nẵng.",
+                  "Nhận phân tích vị trí, công năng khai thác và phương án dòng tiền theo từng nhu cầu đầu tư tại S-Light Tower.",
                 )}
               </p>
               <Link

@@ -10,8 +10,8 @@ const app = express();
 const allowedOrigins =
   process.env.NODE_ENV === "production"
     ? [
-        "https://thelumia.asia",
-        "https://www.thelumia.asia",
+        "https://s-lighttowersungroup.com",
+        "https://www.s-lighttowersungroup.com",
         ...(process.env.CORS_ORIGINS || "")
           .split(",")
           .map((origin) => origin.trim())

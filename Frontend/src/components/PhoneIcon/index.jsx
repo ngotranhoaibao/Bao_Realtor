@@ -13,24 +13,32 @@ const PhoneIcon = () => {
         .animate-phone-wiggle { animation: custom-wiggle 1s infinite ease-in-out; }
       `}</style>
 
-      {/* Thêm class 'group' để điều khiển hiệu ứng hover */}
-      <div className="fixed bottom-6 left-6 z-[9999] flex items-center pointer-events-auto select-none group font-sans">
-        <div className="relative w-12 h-12 md:w-14 md:h-14 flex items-center justify-center z-20">
-          <div className="absolute inset-0 bg-amber-400/10 rounded-full animate-ping [animation-duration:2.5s]" />
-          <a
-            href="tel:0763553105"
-            className="w-10 h-10 md:w-11 md:h-11 bg-stone-950 text-amber-400 border-2 border-amber-400/60 rounded-full flex items-center justify-center shadow-[0_4px_15px_rgba(0,0,0,0.5)] transition-transform duration-300 group-hover:scale-105 active:scale-95"
-          >
-            <Phone className="h-4 w-4 fill-amber-400 animate-phone-wiggle" />
-          </a>
-        </div>
+      <div className="fixed bottom-6 left-6 z-[9999] pointer-events-auto select-none font-sans">
         <a
           href="tel:0763553105"
-          // SỬA ĐỔI: Thêm justify-center để số điện thoại luôn nằm chính giữa thanh bar
-          className="flex items-center justify-center bg-stone-950/95 border border-amber-400/30 text-amber-400 font-bold text-sm md:text-base tracking-widest h-10 md:h-11 rounded-r-full -ml-6 shadow-[0_10px_30px_rgba(0,0,0,0.6)] transition-all duration-500 ease-in-out overflow-hidden uppercase 
-             w-0 opacity-0 group-hover:w-44 group-hover:opacity-100 group-hover:pl-6 group-hover:pr-6"
+          className="relative flex items-center gap-3 rounded-full px-4 py-3 transition-transform duration-300 ease-in-out hover:scale-105"
+          aria-label="Gọi ngay 076 355 3105"
         >
-          076.355.3105
+          <div className="relative flex items-center">
+            <span className="absolute inset-0 rounded-full bg-amber-400/30 blur-2xl" />
+            <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-slate-950 shadow-xl">
+              <Phone className="h-6 w-6" />
+            </span>
+          </div>
+
+          <div className="ml-2 flex items-center gap-3 bg-gradient-to-r from-amber-400 to-amber-500 px-5 py-3 rounded-full shadow-lg backdrop-blur-sm">
+            <div className="flex flex-col">
+              <span className="text-xs font-bold text-white/95">Gọi ngay</span>
+              <span className="text-lg font-black text-white tracking-tight">
+                076 355 3105
+              </span>
+            </div>
+            <div className="hidden sm:block border-l border-white/40 pl-3">
+              <span className="text-xs font-semibold text-white/90">
+                Tư vấn & đặt chỗ
+              </span>
+            </div>
+          </div>
         </a>
       </div>
     </>

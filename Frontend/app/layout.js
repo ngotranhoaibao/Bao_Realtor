@@ -3,22 +3,22 @@ import LayoutClient from "@/components/LayoutClient";
 import JsonLdOrganization from "@/components/JsonLdOrganization";
 
 export const metadata = {
-  title: "The Lumia Đà Nẵng | Bảng giá, chính sách & shophouse Liên Chiểu 2026",
+  title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
   description:
-    "The Lumia Đà Nẵng tại Liên Chiểu: cập nhật bảng giá, chính sách bán hàng, mặt bằng, vị trí, tiện ích và phân tích đầu tư shophouse 4 tầng.",
+    "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng. Sống tiện nghi với tầm view sông và hệ tiện ích quốc tế.",
   openGraph: {
     type: "website",
-    url: "https://thelumia.asia",
-    title: "The Lumia Đà Nẵng | Shophouse 4 Tầng Vừa Ở Vừa Kinh Doanh",
+    url: "https://s-lighttowersungroup.com",
+    title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
     description:
-      "Dự án The Lumia Đà Nẵng tại Liên Chiểu - Shophouse 4 tầng với vị trí vàng, kinh doanh tốt, tiện ích hoàn hảo",
-    siteName: "The Lumia Đà Nẵng",
+      "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng.",
+    siteName: "S-Light Tower",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Lumia Đà Nẵng | Shophouse 4 Tầng",
+    title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
     description:
-      "Dự án The Lumia Đà Nẵng tại Liên Chiểu - Shophouse 4 tầng vừa ở vừa kinh doanh",
+      "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng.",
   },
 };
 
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="vi">
       <head>
         <JsonLdOrganization />
-        <link rel="canonical" href="https://thelumia.asia" />
+        <link rel="canonical" href="https://s-lighttowersungroup.com" />
       </head>
       <body style={{ margin: 0, backgroundColor: "#fff" }}>
         {children}

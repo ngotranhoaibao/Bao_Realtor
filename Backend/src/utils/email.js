@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const apiKey = process.env.RESEND_API_KEY;
-const from = process.env.EMAIL_FROM || "The Lumia <onboarding@resend.dev>";
+const from = process.env.EMAIL_FROM || "S-Light Tower <onboarding@resend.dev>";
 const defaultTo = process.env.EMAIL_TO;
 const resend = apiKey ? new Resend(apiKey) : null;
 

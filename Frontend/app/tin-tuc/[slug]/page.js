@@ -15,10 +15,13 @@ export async function generateMetadata({ params }) {
     return {};
   }
 
-  const articleUrl = `https://thelumia.asia/tin-tuc/${slug}`;
+  const articleUrl = `https://s-lighttowersungroup.com/tin-tuc/${slug}`;
+  const articleImage = article.image
+    ? `https://s-lighttowersungroup.com${article.image}`
+    : "https://s-lighttowersungroup.com/logo.png";
 
   return {
-    title: `${article.title} | The Lumia Đà Nẵng`,
+    title: `${article.title} | S-Light Tower`,
     description: article.excerpt || article.summary,
     canonical: articleUrl,
     openGraph: {
@@ -26,15 +29,15 @@ export async function generateMetadata({ params }) {
       url: articleUrl,
       title: article.title,
       description: article.excerpt || article.summary,
-      images: article.image ? [{ url: article.image }] : [],
+      images: [{ url: articleImage }],
       publishedTime: article.date,
-      authors: ["The Lumia Đà Nẵng"],
+      authors: ["S-Light Tower"],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.excerpt || article.summary,
-      image: article.image,
+      image: articleImage,
     },
   };
 }
@@ -64,25 +67,27 @@ function ArticleJsonLd({ article, slug }) {
     "@type": "NewsArticle",
     headline: article.title,
     description: article.excerpt || article.summary,
-    image: article.image || "https://thelumia.asia/logo.png",
+    image: article.image
+      ? `https://s-lighttowersungroup.com${article.image}`
+      : "https://s-lighttowersungroup.com/logo.png",
     datePublished: article.date || new Date().toISOString(),
     dateModified: article.date || new Date().toISOString(),
     author: {
       "@type": "Organization",
-      name: "The Lumia Đà Nẵng",
-      url: "https://thelumia.asia",
+      name: "S-Light Tower",
+      url: "https://s-lighttowersungroup.com",
     },
     publisher: {
       "@type": "Organization",
-      name: "The Lumia Đà Nẵng",
+      name: "S-Light Tower",
       logo: {
         "@type": "ImageObject",
-        url: "https://thelumia.asia/logo.png",
+        url: "https://s-lighttowersungroup.com/logo.png",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://thelumia.asia/tin-tuc/${slug}`,
+      "@id": `https://s-lighttowersungroup.com/tin-tuc/${slug}`,
     },
   };
 

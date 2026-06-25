@@ -1,117 +1,83 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import Image from "next/image";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
-// ĐÃ SẮP XẾP LẠI THỨ TỰ CHUẨN UX THEO DÒNG LƯỚT TRANG TỪ TRÊN XUỐNG DƯỚI
 const navItems = [
-  { name: "GIỚI THIỆU", href: "#tong-quan" },
-  { name: "VỊ TRÍ", href: "#vi-tri" },
-  { name: "TIỆN ÍCH", href: "#tien-do" },
-  { name: "SẢN PHẨM", href: "#mat-bang" },
+  { name: "TỔNG QUAN", href: "#tong-quan" },
   { name: "CHÍNH SÁCH", href: "#chinh-sach-ban-hang" },
+  { name: "VỊ TRÍ", href: "#vi-tri" },
+  { name: "MẶT BẰNG", href: "#mat-bang" },
+  { name: "TIẾN ĐỘ", href: "#tien-do" },
   { name: "TIN TỨC", href: "#tin-tuc" },
-  { name: "LIÊN HỆ", href: "#lien-he" },
 ];
 
 const Header = () => {
   const scrollToSection = (targetId) => {
     const element = document.getElementById(targetId.replace("#", ""));
-
     if (!element) return;
-
-    const headerOffset = 80;
+    const headerOffset = 100;
     const elementPosition = element.getBoundingClientRect().top;
     const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
     window.scrollTo({ top: offsetPosition, behavior: "smooth" });
   };
 
   const handleScroll = (e, href) => {
     if (!href.startsWith("#")) return;
-
     e.preventDefault();
     scrollToSection(href);
   };
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full h-20 border-b border-white/10 bg-slate-950/60 backdrop-blur-md">
-      <div className="container flex h-full items-center justify-between mx-auto px-4">
-        {/* LOGO CHÍNH THỨC DỰ ÁN THE LUMIA ĐÀ NẴNG */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 shrink-0 transition-opacity hover:opacity-90 animate-fade-in"
-        >
-          <Image
-            src="/the-lumia-da-nang-logo-white.png"
-            alt="The Lumia Đà Nẵng Official Website"
-            width={180}
-            height={48}
-            className="h-12 w-auto object-contain brightness-110 contrast-105"
-          />
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/20 bg-white/90 backdrop-blur-xl shadow-sm shadow-slate-900/5">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4">
+        <Link href="/" className="flex items-center gap-3 text-slate-950">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-500 text-sm font-bold uppercase text-white">
+            SL
+          </div>
+          <div className="hidden md:block">
+            <p className="text-xs uppercase tracking-[0.32em] text-slate-500">
+              S-Light Tower
+            </p>
+            <p className="text-sm font-semibold text-slate-950">
+              Sun Group Đà Nẵng
+            </p>
+          </div>
         </Link>
 
-        {/* DESKTOP NAVIGATION */}
-        <div className="hidden md:flex items-center">
-          <NavigationMenu>
-            <NavigationMenuList className="gap-1">
-              {navItems.map((item) => (
-                <NavigationMenuItem key={item.name}>
-                  <NavigationMenuLink
-                    href={
-                      item.href.startsWith("#") ? `/${item.href}` : item.href
-                    }
-                    onClick={(e) => handleScroll(e, item.href)}
-                    className={`${navigationMenuTriggerStyle()} cursor-pointer bg-transparent text-slate-200 hover:text-amber-400 font-semibold text-xs tracking-widest transition-colors duration-200`}
-                    style={{ backgroundColor: "transparent" }}
-                  >
-                    {item.name}
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-              ))}
-            </NavigationMenuList>
-          </NavigationMenu>
-        </div>
+        <nav className="hidden items-center gap-6 md:flex">
+          {navItems.map((item) => (
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={(e) => handleScroll(e, item.href)}
+              className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:text-amber-500"
+            >
+              {item.name}
+            </a>
+          ))}
+        </nav>
 
-        {/* MOBILE NAVIGATION */}
         <div className="md:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white hover:bg-white/10"
-              >
+              <Button variant="ghost" size="icon" className="text-slate-900">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="bg-slate-950 text-white p-6 w-[260px] border-l border-white/10"
-            >
-              <nav className="flex flex-col gap-5 mt-12">
+            <SheetContent side="right" className="bg-white p-6 text-slate-950">
+              <nav className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => (
-                  <Link
+                  <a
                     key={item.name}
-                    href={
-                      item.href.startsWith("#") ? `/${item.href}` : item.href
-                    }
+                    href={item.href}
                     onClick={(e) => handleScroll(e, item.href)}
-                    className="text-xs font-bold tracking-widest text-slate-200 hover:text-amber-400 transition-colors border-b border-white/5 pb-2"
+                    className="text-base font-semibold uppercase tracking-[0.16em] text-slate-900 hover:text-amber-500"
                   >
                     {item.name}
-                  </Link>
+                  </a>
                 ))}
               </nav>
             </SheetContent>
