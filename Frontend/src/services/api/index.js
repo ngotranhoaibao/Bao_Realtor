@@ -1,7 +1,7 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const rawBaseURL = process.env.NEXT_PUBLIC_API_URL || process.env.VITE_API_URL;
+const rawBaseURL = process.env.NEXT_PUBLIC_API_URL;
 const normalizedBaseURL = rawBaseURL
   ? rawBaseURL.replace(/\/+$|\/api\/?$/, "").concat("/api")
   : "http://localhost:3001/api";
