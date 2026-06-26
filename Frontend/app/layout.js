@@ -6,7 +6,8 @@ export const metadata = {
   metadataBase: new URL("https://s-lighttower.id.vn"),
   title: "S-Light Tower Đà Nẵng - Bảng Giá, Mặt Bằng, Chính Sách Mới Nhất 2026",
   description:
-  "Cập nhật bảng giá S-Light Tower Đà Nẵng mới nhất 2026. Thông tin dự án Sun Group gồm mặt bằng, vị trí, tiện ích, tiến độ, chính sách bán hàng và ưu đãi mới nhất."  icons: {
+    "Cập nhật bảng giá S-Light Tower Đà Nẵng mới nhất 2026. Thông tin dự án Sun Group gồm mặt bằng, vị trí, tiện ích, tiến độ, chính sách bán hàng và ưu đãi mới nhất.",
+  icons: {
     icon: "/images/logo-sun-s-light-tower.avif",
     apple: "/images/logo-sun-s-light-tower.avif",
   },
