@@ -3,9 +3,9 @@ import LayoutClient from "@/components/LayoutClient";
 import JsonLdOrganization from "@/components/JsonLdOrganization";
 
 export const metadata = {
-  title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
+  title: "S-Light Tower Đà Nẵng - Bảng Giá, Mặt Bằng, Chính Sách Mới Nhất 2026",
   description:
-    "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng. Sống tiện nghi với tầm view sông và hệ tiện ích quốc tế.",
+    "S-Light Tower Đà Nẵng - Xem bảng giá, mặt bằng, chính sách mới nhất 2026. Dự án căn hộ cao cấp Sun Group tại Hòa Xuân. Sở hữu ngay với ưu đãi đặc biệt.",
   icons: {
     icon: "/images/logo-sun-s-light-tower.avif",
     apple: "/images/logo-sun-s-light-tower.avif",
@@ -13,16 +13,18 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: "https://s-lighttower.id.vn",
-    title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
+    title:
+      "S-Light Tower Đà Nẵng - Bảng Giá, Mặt Bằng, Chính Sách Mới Nhất 2026",
     description:
-      "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng.",
+      "Xem bảng giá, mặt bằng, chính sách mới nhất 2026 của S-Light Tower Đà Nẵng. Dự án cao cấp Sun Group.",
     siteName: "S-Light Tower",
   },
   twitter: {
     card: "summary_large_image",
-    title: "S-Light Tower | Dự án Sun Group Đà Nẵng",
+    title:
+      "S-Light Tower Đà Nẵng - Bảng Giá, Mặt Bằng, Chính Sách Mới Nhất 2026",
     description:
-      "S-Light Tower - Dự án căn hộ cao cấp Sun Group tại Hòa Xuân, Nam Đà Nẵng.",
+      "Xem bảng giá, mặt bằng, chính sách mới nhất 2026 của S-Light Tower Đà Nẵng. Dự án cao cấp Sun Group.",
   },
 };
 
