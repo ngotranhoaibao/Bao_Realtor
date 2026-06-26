@@ -433,18 +433,23 @@ const NewLanding = () => {
                 <div className="bg-purple-950/20 border border-purple-900/40 rounded-2xl p-5 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs md:text-sm font-semibold text-slate-200">
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                    <span>
-                      Tỷ lệ vay ngân hàng tối đa:{" "}
-                      <span className="text-white font-black text-sm">70%</span>
+                    <span className="text-white">
+                      Thanh toán <span className="font-black">70%</span> nhận
+                      nhà
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                    <span>
-                      Thời gian hỗ trợ lãi suất 0%:{" "}
-                      <span className="text-white font-black text-sm">
-                        30 tháng
-                      </span>
+                    <span className="text-white">
+                      Hỗ trợ lãi suất đến{" "}
+                      <span className="font-black">24 tháng</span>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                    <span className="text-white">
+                      Giãn tiến độ thanh toán đến{" "}
+                      <span className="font-black">48 tháng</span>
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
